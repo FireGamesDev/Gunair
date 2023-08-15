@@ -1,0 +1,88 @@
+using Scripts.Managers;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CarnivalTarget : MonoBehaviour, ITarget
+{
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private int score = 10;
+    [SerializeField] private bool isObstacle = false;
+    [SerializeField] private bool notMovingTarget = false;
+    [SerializeField] private GameObject hitPrefab;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private GameObject scorePopup;
+
+    [Header("SFX")]
+    [SerializeField] private GameObject sfxPrefab;
+    [SerializeField] private AudioClip hitSFX;
+    [SerializeField] private AudioClip ricochetSFX;
+
+    private float xDirection = 0f;
+
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+
+        speed *= Random.Range(0.4f, 3f);
+    }
+
+    private void Update()
+    {
+        if (notMovingTarget) return;
+
+        transform.Translate(Vector3.right * xDirection * speed * Time.deltaTime);
+
+        // out of the map
+        if (Mathf.Abs(transform.position.x) > 10)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetDirection(bool isLeft)
+    {
+        if (isLeft) xDirection = -1f;
+        else xDirection = 1f;
+    }
+
+    public void Hit(RaycastHit contactPoint)
+    {
+        if (!isObstacle)
+        {
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+            GameObject hitGo = Instantiate(hitPrefab, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
+            Destroy(hitGo, 1f);
+
+            Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(hitSFX, Random.Range(0.8f, 1.2f));
+
+            scoreManager.AddScore(score);
+
+            //score popup
+            var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
+            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = score.ToString();
+            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
+            Destroy(popup, 1);
+
+            Destroy(gameObject);
+        }
+        else
+        {
+            GameObject hitGo = Instantiate(hitPrefab, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
+            Destroy(hitGo, 1f);
+
+            //score popup
+            var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
+            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = score.ToString();
+            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.red;
+            Destroy(popup, 2);
+
+            Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(ricochetSFX, Random.Range(0.8f, 1.2f));
+
+            scoreManager.RemoveScore(score);
+        }
+    }
+}
