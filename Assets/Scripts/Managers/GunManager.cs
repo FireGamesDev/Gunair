@@ -154,10 +154,14 @@ public class GunManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(raycastDirection);
 
         //actual shooting with raycast
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 100f) && Vector3.Distance(transform.position, hit.point) < 200f)
         {
-            GameObject hitGo = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(hitGo, 2f);
+            if (hitEffect != null)
+            {
+                GameObject hitGo = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(hitGo, 2f);
+            }
+            
 
             ITarget target = hit.transform.GetComponent<ITarget>();
 
@@ -167,20 +171,21 @@ public class GunManager : MonoBehaviour
 
                 cursor.SetTrigger("Hit");
             }
+
+            /*
+            // Creating the bullet only visual
+            Vector3 bulletDirection = (hit.point - transform.position).normalized;
+            Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection);
+
+            // Apply 90-degree offset on the y-axis
+            Quaternion yRotationOffset = Quaternion.Euler(0f, 90f, 0f);
+            bulletRotation *= yRotationOffset;
+
+            var pel = Instantiate(bulletPrefab, reticle.transform.position, bulletRotation);
+            pel.GetComponent<Rigidbody>().AddForce(bulletDirection * shootForce);
+            Destroy(pel, 2);
+            */
         }
-
-        // Creating the bullet only visual
-        Vector3 bulletDirection = (hit.point - transform.position).normalized;
-        Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection);
-
-        // Apply 90-degree offset on the y-axis
-        Quaternion yRotationOffset = Quaternion.Euler(0f, 90f, 0f);
-        bulletRotation *= yRotationOffset;
-
-        /*
-        var pel = Instantiate(bulletPrefab, reticle.transform.position, bulletRotation);
-        pel.GetComponent<Rigidbody>().AddForce(bulletDirection * shootForce);
-        Destroy(pel, 2);*/
     }
 
     private IEnumerator Muzzle()

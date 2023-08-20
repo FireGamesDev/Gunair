@@ -31,15 +31,15 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
     private void Update()
     {
-        if (notMovingTarget) return;
-
-        transform.Translate(Vector3.right * xDirection * speed * Time.deltaTime);
-
         // out of the map
-        if (Mathf.Abs(transform.position.x) > 10)
+        if (Mathf.Abs(transform.position.x) > 10 || Mathf.Abs(transform.position.y) > 10)
         {
             Destroy(gameObject);
         }
+
+        if (notMovingTarget) return;
+
+        transform.Translate(Vector3.right * xDirection * speed * Time.deltaTime);
     }
 
     public void SetDirection(bool isLeft)

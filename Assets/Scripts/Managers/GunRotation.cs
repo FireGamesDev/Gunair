@@ -20,7 +20,7 @@ public class GunRotation : MonoBehaviour
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, 100f))
         {
             targetPosition = hit.point;
         }
