@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InvaderEnemyVerticalMovement : MonoBehaviour
@@ -21,21 +19,34 @@ public class InvaderEnemyVerticalMovement : MonoBehaviour
     {
         Vector3 newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime * moveDirection;
 
-        // Move horizontally within the defined distance
-        if (!descending && Mathf.Abs(newPosition.x - startingPosition.x) <= horizontalMoveDistance)
+        // Move horizontally
+        if (!descending)
         {
-            transform.position = newPosition;
+
+            if (Mathf.Abs(transform.position.x - startingPosition.x) <= horizontalMoveDistance)
+            {
+                transform.position = newPosition;
+            }
+            else
+            {
+                descending = true;
+            }
         }
         else
         {
             // Descend and change direction
-            descending = true;
             transform.position += Vector3.down * moveSpeed * Time.deltaTime;
 
             if (Mathf.Abs(transform.position.y - startingPosition.y) >= descentDistance)
             {
+                // Update startingPosition after each descent
+                startingPosition = transform.position;
                 descending = false;
                 moveDirection *= -1;
+
+                // Reset the position to ensure it moves to the left
+                newPosition = transform.position + Vector3.right * moveSpeed * Time.deltaTime * moveDirection;
+                transform.position = newPosition;
             }
         }
     }

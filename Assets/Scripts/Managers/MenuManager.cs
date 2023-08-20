@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -24,5 +25,12 @@ public class MenuManager : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void ClayWars(int playerCount)
+    {
+        ClayWarsGameManager.playerCount = playerCount;
+
+        SceneManager.LoadScene("ClayWars");
     }
 }

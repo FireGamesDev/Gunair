@@ -59,7 +59,7 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.isEnded) return;
+        if(gameManager != null) if (gameManager.isEnded) return;
         if (reloading) return;
 
         CheckInput();

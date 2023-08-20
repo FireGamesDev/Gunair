@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  horizontalMoveDistance: 5
+  horizontalMoveDistance: 10
   descentDistance: 2
 --- !u!1 &1830147641760939999
 GameObject:
