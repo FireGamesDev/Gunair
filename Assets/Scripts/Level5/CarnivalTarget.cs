@@ -9,6 +9,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
     [SerializeField] private int score = 10;
     [SerializeField] private bool isObstacle = false;
     [SerializeField] private bool notMovingTarget = false;
+    [SerializeField] private bool isClay = false;
     [SerializeField] private GameObject hitPrefab;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private GameObject scorePopup;
@@ -24,7 +25,11 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
     private void Start()
     {
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        if (!isClay)
+        {
+            scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        }
+        
 
         speed *= Random.Range(0.4f, 3f);
     }
@@ -59,7 +64,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(hitSFX, Random.Range(0.8f, 1.2f));
 
-            scoreManager.AddScore(score);
+            if(scoreManager != null) scoreManager.AddScore(score);
 
             //score popup
             var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
@@ -82,7 +87,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(ricochetSFX, Random.Range(0.8f, 1.2f));
 
-            scoreManager.RemoveScore(score);
+            if (scoreManager != null) scoreManager.RemoveScore(score);
         }
     }
 }

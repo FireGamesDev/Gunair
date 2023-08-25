@@ -5,4 +5,6 @@ using UnityEngine;
 public class ClayWarsGameManager : MonoBehaviour
 {
     public static int playerCount = 0;
+
+    public bool isEnded = false;
 }

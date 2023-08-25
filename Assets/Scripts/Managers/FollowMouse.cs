@@ -5,12 +5,18 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private ClayWarsGameManager clayGameManager;
 
     private Vector3 pos;
 
     private void Update()
     {
-        if (gameManager.isEnded) 
+        if (gameManager != null && gameManager.isEnded) 
+        {
+            gameObject.SetActive(false);
+        }
+        
+        if (clayGameManager != null && clayGameManager.isEnded) 
         {
             gameObject.SetActive(false);
         }
