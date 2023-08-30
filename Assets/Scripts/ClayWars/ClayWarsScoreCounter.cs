@@ -39,18 +39,28 @@ public class ClayWarsScoreCounter : MonoBehaviour
     {
         if (playerIndex >= 0 && playerIndex < scoreRows.Count)
         {
-            int previousPlacing = scoreRows[playerIndex].currentPlacing;
             scoreRows[playerIndex].AddScore(scoresToAdd);
 
-            int newPlacing = GetPlacingForScore(scoreRows[playerIndex].score);
-            scoreRows[playerIndex].UpdatePlacing(newPlacing);
-
-            if (previousPlacing != newPlacing)
+            if(scoreRows.Count > 1)
             {
-                AnimatePlacingChange(playerIndex, previousPlacing, newPlacing);
+                int newPlacing = GetPlacingForScore(scoreRows[playerIndex].score);
+                scoreRows[playerIndex].UpdatePlacing(newPlacing);
+
+                UpdateLeaderboard();
             }
         }
     }
+
+    private void UpdateLeaderboard()
+    {
+        for (int i = 0; i < scoreRows.Count; i++)
+        {
+            int newPlacing = GetPlacingForScore(scoreRows[i].score);
+            scoreRows[i].UpdatePlacing(newPlacing);
+            AnimatePlacingChange(i, scoreRows[i].currentPlacing, newPlacing);
+        }
+    }
+
 
     private int GetPlacingForScore(int score)
     {
@@ -75,7 +85,8 @@ public class ClayWarsScoreCounter : MonoBehaviour
     {
         if (newPlacing < previousPlacing)
         {
-            scoreRows[playerIndex].transform.DOMoveY(scoreRows[newPlacing - 1].transform.position.y, 0.5f);
+            float newYPosition = scoreRows[newPlacing - 1].transform.position.y;
+            scoreRows[playerIndex].transform.DOMoveY(newYPosition, 0.5f);
         }
     }
 

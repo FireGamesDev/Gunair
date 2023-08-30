@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class ClayWarsRoundManager : MonoBehaviour
     [SerializeField] private GameObject roundCirclePrefab;
     [SerializeField] private Transform parent;
 
-    private int currentRoundNumber = 0;
+    private int currentRoundNumber = -1;
     public int currentPlayerIndexInRound { get; private set; } = -1;
 
     public static ClayWarsRoundManager Instance;
@@ -28,6 +27,15 @@ public class ClayWarsRoundManager : MonoBehaviour
     private void Start()
     {
         InitRoundCircles();
+
+        if (ClayWarsGameManager.playerCount > 2)
+        {
+            currentRoundNumber = 0;
+        }
+        else
+        {
+            currentPlayerIndexInRound = 0;
+        }
 
         NextRound();
     }
@@ -46,13 +54,13 @@ public class ClayWarsRoundManager : MonoBehaviour
         {
             currentPlayerIndexInRound++;
 
-            currentPlayerDisplay.text = ClayWarsScoreCounter.Instance.GetPlayerNameByIndex(currentPlayerIndexInRound);
-
             if (currentPlayerIndexInRound >= ClayWarsGameManager.playerCount)
             {
-                currentPlayerIndexInRound = -1;
+                currentPlayerIndexInRound = 0;
                 currentRoundNumber += 1;
             }
+
+            currentPlayerDisplay.text = ClayWarsScoreCounter.Instance.GetPlayerNameByIndex(currentPlayerIndexInRound);
 
             currentPlayerDisplay.DOFade(0, 0).OnComplete(() =>
             {
@@ -74,24 +82,25 @@ public class ClayWarsRoundManager : MonoBehaviour
             return;
         }
 
-        roundIndicatorCircles[currentRoundNumber - 1].GetComponent<Image>().color = Color.white;
-
+        roundIndicatorCircles[currentRoundNumber].GetComponent<Image>().color = Color.white;
 
         // Fade in and out animation for roundDisplay
         roundDisplay.DOFade(0, 0).OnComplete(() =>
         {
-            roundDisplay.text = "ROUND " + currentRoundNumber.ToString();
+            if(currentRoundNumber == rounds)
+            {
+                roundDisplay.text = "LAST ROUND";
+            }
+            else roundDisplay.text = "ROUND " + (currentRoundNumber + 1).ToString();
             roundDisplay.DOFade(1, 1).OnComplete(() =>
             {
                 roundDisplay.DOFade(0, 1).SetDelay(1);
-
-                ClayWarsDiscSpawner.Instance.NewRound();
             });
         });
 
 
         // Scale animation for header
-        header.transform.localScale = Vector3.zero;
+        header.transform.localScale = new Vector3(1, 0, 1);
         header.transform.DOScaleY(1, 1).OnComplete(() =>
         {
             header.transform.DOScaleY(0, 1).SetDelay(1);

@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private LevelObject levelPrefab;
     [SerializeField] private Transform levelRow1;
     [SerializeField] private Transform levelRow2;
+    [SerializeField] private Transform levelRow3;
 
     [SerializeField] private int levelCount = 5;
 
@@ -22,7 +23,11 @@ public class LevelManager : MonoBehaviour
 
             LevelObject level;
 
-            if (i > 5)
+            if (i > 10)
+            {
+                level = Instantiate(levelPrefab, levelRow3);
+            }
+            else if (i > 5)
             {
                 level = Instantiate(levelPrefab, levelRow2);
             }
@@ -60,6 +65,11 @@ public class LevelManager : MonoBehaviour
         }
         
         foreach (Transform item in levelRow2)
+        {
+            Destroy(item.gameObject);
+        }
+        
+        foreach (Transform item in levelRow3)
         {
             Destroy(item.gameObject);
         }

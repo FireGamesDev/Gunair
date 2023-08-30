@@ -20,6 +20,18 @@ public class ClayWarsGameManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Update()
+    {
+        if (isEnded)
+        {
+            if (!Cursor.visible)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+    }
+
     public void UpdateScore(int scoresToAdd)
     {
         scoreCounter.UpdatePlayerScoreAndPlacing(ClayWarsRoundManager.Instance.currentPlayerIndexInRound, scoresToAdd);
@@ -35,6 +47,8 @@ public class ClayWarsGameManager : MonoBehaviour
             string winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
             winnerScoreText.text = winnerScore.ToString();
             endGameText.text = "The winner is: " + winnerName;
+
+            endScreen.SetActive(true);
         }
     }
 

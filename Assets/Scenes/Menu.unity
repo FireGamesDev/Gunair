@@ -2934,6 +2934,7 @@ RectTransform:
   - {fileID: 403031910}
   - {fileID: 462084685}
   - {fileID: 273522644}
+  - {fileID: 1826434399}
   - {fileID: 37016601}
   m_Father: {fileID: 639965225}
   m_RootOrder: -1
@@ -2958,6 +2959,7 @@ MonoBehaviour:
   levelPrefab: {fileID: 6818492538011861798, guid: fdf4fb78805698b499d76afb644add81, type: 3}
   levelRow1: {fileID: 462084685}
   levelRow2: {fileID: 273522644}
+  levelRow3: {fileID: 1826434399}
   levelCount: 11
 --- !u!1 &1451356271
 GameObject:
@@ -3533,6 +3535,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686215521}
   m_CullTransparentMesh: 1
+--- !u!1 &1826434398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826434399}
+  - component: {fileID: 1826434400}
+  m_Layer: 5
+  m_Name: LevelRow (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1826434399
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826434398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1410939559}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -231.32678, y: -130}
+  m_SizeDelta: {x: 337.3464, y: 165.3064}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1826434400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826434398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 40
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &1888266970
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,12 +43,19 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             if (discNumberForTheRound <= 0)
             {
+                if (ClayWarsGameManager.playerCount > 1)
+                {
+                    yield return new WaitForSeconds(2f);
+                }
+
                 ClayWarsRoundManager.Instance.NextRound();
+
+                NewRound();
             }
 
-            while (discNumberForTheRound <= 0)
+            while (ClayWarsGameManager.Instance.isEnded) //stop it
             {
-                yield return new WaitForSeconds(Random.Range(0.5f, 1.2f));
+                yield return new WaitForSeconds(1f);
             }
 
             if (Random.value < 0.4f)
@@ -66,7 +73,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             SpawnDiscAndLaunch(toLeft);
 
-            yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.3f);
 
             QuickShot.Instance.StartTimer();
         }
