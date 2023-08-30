@@ -6,10 +6,12 @@ using UnityEngine;
 public class ClayWarsDiscSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject disc;
+    [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private List<Transform> _leftSpawnpoints = new List<Transform>();
     [SerializeField] private List<Transform> _rightSpawnpoints = new List<Transform>();
 
     [SerializeField] private float spawnTime = 2f;
+    [SerializeField] private float lifeTime = 4f;
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float curveAmount = 2f;
 
@@ -20,16 +22,17 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     private IEnumerator SpawnerRoutine()
     {
-        yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
-
-        if (Random.value < 0.4f)
+        while (true)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
+
+            if (Random.value < 0.4f)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            SpawnDiscAndLaunch();
         }
-
-        SpawnDiscAndLaunch();
-
-        StartCoroutine(SpawnerRoutine());
     }
 
     private void SpawnDiscAndLaunch()
@@ -38,11 +41,19 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         {
             var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), false);
+
+            cam.m_LookAt = discGo.transform;
+
+            Destroy(discGo, lifeTime);
         }
         else
         {
             var discGo = Instantiate(disc, _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), true);
+
+            cam.m_LookAt = discGo.transform;
+
+            Destroy(discGo, lifeTime);
         }
     }
 

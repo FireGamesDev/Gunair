@@ -36,6 +36,8 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
     private void Update()
     {
+        if (isClay) return;
+
         // out of the map
         if (Mathf.Abs(transform.position.x) > 10 || Mathf.Abs(transform.position.y) > 10)
         {

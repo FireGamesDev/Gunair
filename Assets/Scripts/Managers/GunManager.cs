@@ -109,7 +109,7 @@ public class GunManager : MonoBehaviour
         else
         {
             const int pelletCount = 7;
-            const float spreadRadius = 100f;
+            const float spreadRadius = 10f;
 
             for (int i = 0; i < pelletCount; i++)
             {
