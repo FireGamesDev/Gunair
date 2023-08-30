@@ -17,6 +17,19 @@ public class ClayWarsDiscSpawner : MonoBehaviour
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float curveAmount = 2f;
 
+    [SerializeField] private int discNumberForTheRoundMin = 3;
+    [SerializeField] private int discNumberForTheRoundMax = 8;
+
+    public int discNumberForTheRound { get; private set; } = 4;
+
+
+    public static ClayWarsDiscSpawner Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         StartCoroutine(SpawnerRoutine());
@@ -28,9 +41,19 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
 
+            if (discNumberForTheRound <= 0)
+            {
+                ClayWarsRoundManager.Instance.NextRound();
+            }
+
+            while (discNumberForTheRound <= 0)
+            {
+                yield return new WaitForSeconds(Random.Range(0.5f, 1.2f));
+            }
+
             if (Random.value < 0.4f)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
             }
 
             bool toLeft = Random.value < 0.5f;
@@ -43,7 +66,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             SpawnDiscAndLaunch(toLeft);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
 
             QuickShot.Instance.StartTimer();
         }
@@ -51,6 +74,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     private void SpawnDiscAndLaunch(bool toLeft)
     {
+        discNumberForTheRound--;
+
+        if (discNumberForTheRound <= -1) return;
+
         if (toLeft)
         {
             var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
@@ -85,5 +112,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         // Apply the force to the Rigidbody
         rb.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void NewRound()
+    {
+        discNumberForTheRound = Random.Range(discNumberForTheRoundMin, discNumberForTheRoundMax);
     }
 }

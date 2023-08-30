@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening; // Make sure you have DOTween imported
+using System.Linq;
 
 public class ClayWarsScoreCounter : MonoBehaviour
 {
@@ -114,5 +115,34 @@ public class ClayWarsScoreCounter : MonoBehaviour
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = feedbackColor;
             Destroy(popup, 1);
         }
+    }
+
+    public string GetPlayerWithHighestScore()
+    {
+        ScoreRow highestScorer = scoreRows.OrderByDescending(row => row.score).FirstOrDefault();
+
+        if (highestScorer != null)
+        {
+            return highestScorer.playerName;
+        }
+
+        return "";
+    }
+    
+    public string GetPlayerNameByIndex(int index)
+    {
+        return scoreRows[index].playerName;
+    }
+
+    public int GetHighestScore()
+    {
+        ScoreRow highestScorer = scoreRows.OrderByDescending(row => row.score).FirstOrDefault();
+
+        if (highestScorer != null)
+        {
+            return highestScorer.score;
+        }
+
+        return 0;
     }
 }

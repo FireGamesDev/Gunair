@@ -11,10 +11,14 @@ public class ScoreRow : MonoBehaviour
 
     public int score { get; private set; } = 0;
     public int currentPlacing { get; private set; } = 0;
+    public string playerName { get; private set; }
 
     public void SetRow(string playerName, int score, int placing)
     {
         nameText.text = playerName;
+
+        this.playerName = playerName;
+
         scoreText.text = score.ToString();
         placingText.text = placing.ToString();
 
