@@ -42,6 +42,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             yield return new WaitForSeconds(1.5f);
 
             SpawnDiscAndLaunch(toLeft);
+
+            yield return new WaitForSeconds(0.5f);
+
+            QuickShot.Instance.StartTimer();
         }
     }
 
