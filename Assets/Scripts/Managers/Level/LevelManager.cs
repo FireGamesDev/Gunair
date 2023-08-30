@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
 
     public void SetLevels()
     {
+        DestroyLevels();
+
         for (int i = 1; i <= levelCount; i++)
         {
             int stars = PlayerPrefs.GetInt($"Level{i}_Stars", 0);
@@ -47,6 +49,19 @@ public class LevelManager : MonoBehaviour
             level.SetLevel(i, stars, isLocked);
 
             LoadBestTime(i ,level);
+        }
+    }
+
+    private void DestroyLevels()
+    {
+        foreach (Transform item in levelRow1)
+        {
+            Destroy(item.gameObject);
+        }
+        
+        foreach (Transform item in levelRow2)
+        {
+            Destroy(item.gameObject);
         }
     }
 

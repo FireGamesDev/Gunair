@@ -6,6 +6,8 @@ using UnityEngine;
 public class ClayWarsDiscSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject disc;
+    [SerializeField] private GameObject fromLeftIconUI;
+    [SerializeField] private GameObject fromRightIconUI;
     [SerializeField] private CinemachineVirtualCamera cam;
     [SerializeField] private List<Transform> _leftSpawnpoints = new List<Transform>();
     [SerializeField] private List<Transform> _rightSpawnpoints = new List<Transform>();
@@ -31,13 +33,21 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
 
-            SpawnDiscAndLaunch();
+            bool toLeft = Random.value < 0.5f;
+
+            fromLeftIconUI.SetActive(toLeft);
+
+            fromRightIconUI.SetActive(!toLeft);
+
+            yield return new WaitForSeconds(1.5f);
+
+            SpawnDiscAndLaunch(toLeft);
         }
     }
 
-    private void SpawnDiscAndLaunch()
+    private void SpawnDiscAndLaunch(bool toLeft)
     {
-        if (Random.value < 0.5f)
+        if (toLeft)
         {
             var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), false);

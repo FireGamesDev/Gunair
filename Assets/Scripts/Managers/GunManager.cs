@@ -22,6 +22,10 @@ public class GunManager : MonoBehaviour
 
     [SerializeField] private GameManager gameManager;
 
+    [Header("Shotgun")]
+    [SerializeField] private int pelletCount = 7;
+    [SerializeField] private float spreadRadius = 10f;
+
     [Header("Magazine")]
     [SerializeField] private int magSize = 6;
     [SerializeField] private bool isInfinite = false;
@@ -108,9 +112,6 @@ public class GunManager : MonoBehaviour
         }
         else
         {
-            const int pelletCount = 7;
-            const float spreadRadius = 10f;
-
             for (int i = 0; i < pelletCount; i++)
             {
                 Vector3 spreadPosition = GenerateSpreadPosition(Input.mousePosition, spreadRadius);
