@@ -266,6 +266,19 @@ public class GunManager : MonoBehaviour
         reloading = false;
     }
 
+    public void ReloadShotgunOnNewRoundInstantly()
+    {
+        while (currentBulletCount < magSize)
+        {
+            AddBulletToTheMag();
+        }
+
+        if (isShotgun)
+        {
+            Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFXWithVolume(shotgunReloadEnd, 0.3f);
+        }
+    }
+
     private void DestroyAmmoDisplay()
     {
         int childCount = bulletUIParent.transform.childCount;

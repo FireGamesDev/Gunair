@@ -43,12 +43,12 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             if (discNumberForTheRound <= 0)
             {
+                ClayWarsRoundManager.Instance.NextRound();
+
                 if (ClayWarsGameManager.playerCount > 1)
                 {
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(4f);
                 }
-
-                ClayWarsRoundManager.Instance.NextRound();
 
                 NewRound();
             }

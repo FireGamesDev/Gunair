@@ -3336,7 +3336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 300}
+  m_AnchoredPosition: {x: 100, y: 374}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954582841
@@ -4624,7 +4624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 232, y: 268}
+  m_AnchoredPosition: {x: 232, y: 236}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1230764010
@@ -6791,6 +6791,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
+--- !u!114 &1510434528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1695516762707368262, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
+  m_PrefabInstance: {fileID: 1510434527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032310775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b1b5515a1672c4a861ec8db3912283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515826756
 GameObject:
   m_ObjectHideFlags: 0
@@ -7752,6 +7763,7 @@ MonoBehaviour:
   header: {fileID: 1066381130}
   roundDisplay: {fileID: 1364235027}
   currentPlayerDisplay: {fileID: 1355786588}
+  shotgun: {fileID: 1510434528}
   rounds: 2
   roundCirclePrefab: {fileID: 2224324022622401316, guid: 6a45391d1627fcc48a1f3034a2670578, type: 3}
   parent: {fileID: 133460024}
@@ -8833,7 +8845,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 300}
+  m_AnchoredPosition: {x: -100, y: 374}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088074225

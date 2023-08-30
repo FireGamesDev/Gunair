@@ -95,12 +95,12 @@ public class ClayWarsScoreCounter : MonoBehaviour
         string textFeedback = "";
         Color feedbackColor = Color.white;
 
-        if (score > 16)
+        if (score > 14)
         {
             textFeedback = "Awesome!";
             feedbackColor = Color.red;
         }
-        else if (score > 13)
+        else if (score > 10)
         {
             textFeedback = "Great!";
             feedbackColor = Color.green;

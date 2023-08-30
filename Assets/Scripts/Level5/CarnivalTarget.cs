@@ -68,12 +68,12 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             if(scoreManager != null) scoreManager.AddScore(score);
 
-            int quickshotScore = QuickShot.Instance.CalculateScore();
-
-            score += quickshotScore;
-
             if (isClay)
             {
+                int quickshotScore = QuickShot.Instance.CalculateScore();
+
+                score += quickshotScore;
+
                 QuickShot.Instance.StopTimer();
                 ClayWarsGameManager.Instance.UpdateScore(score);
 
@@ -83,12 +83,9 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             //score popup
             var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
             popup.transform.LookAt(Camera.main.transform);
-            if (isClay)
-            {
-                Vector3 scale = popup.transform.localScale;
-                scale.x *= -1;
-                popup.transform.localScale = scale;
-            }
+            Vector3 scale = popup.transform.localScale;
+            scale.x *= -1;
+            popup.transform.localScale = scale;
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = score.ToString();
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
             Destroy(popup, 1);

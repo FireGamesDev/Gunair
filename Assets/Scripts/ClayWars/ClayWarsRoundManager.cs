@@ -9,6 +9,7 @@ public class ClayWarsRoundManager : MonoBehaviour
     [SerializeField] private GameObject header;
     [SerializeField] private TMPro.TMP_Text roundDisplay;
     [SerializeField] private TMPro.TMP_Text currentPlayerDisplay;
+    [SerializeField] private GunManager shotgun;
 
     [SerializeField] private int rounds = 4;
     [SerializeField] private GameObject roundCirclePrefab;
@@ -28,13 +29,13 @@ public class ClayWarsRoundManager : MonoBehaviour
     {
         InitRoundCircles();
 
-        if (ClayWarsGameManager.playerCount > 2)
+        if (ClayWarsGameManager.playerCount < 2)
         {
-            currentRoundNumber = 0;
+            currentPlayerIndexInRound = 0;
         }
         else
         {
-            currentPlayerIndexInRound = 0;
+            currentRoundNumber = 0;
         }
 
         NextRound();
@@ -52,7 +53,10 @@ public class ClayWarsRoundManager : MonoBehaviour
     {
         if (ClayWarsGameManager.playerCount > 1)
         {
+            //next player
             currentPlayerIndexInRound++;
+
+            shotgun.ReloadShotgunOnNewRoundInstantly();
 
             if (currentPlayerIndexInRound >= ClayWarsGameManager.playerCount)
             {
@@ -60,15 +64,18 @@ public class ClayWarsRoundManager : MonoBehaviour
                 currentRoundNumber += 1;
             }
 
-            currentPlayerDisplay.text = ClayWarsScoreCounter.Instance.GetPlayerNameByIndex(currentPlayerIndexInRound);
-
-            currentPlayerDisplay.DOFade(0, 0).OnComplete(() =>
+            if (currentRoundNumber < rounds)
             {
-                currentPlayerDisplay.DOFade(1, 1).OnComplete(() =>
+                currentPlayerDisplay.text = ClayWarsScoreCounter.Instance.GetPlayerNameByIndex(currentPlayerIndexInRound);
+
+                currentPlayerDisplay.DOFade(0, 0).OnComplete(() =>
                 {
-                    currentPlayerDisplay.DOFade(0, 1).SetDelay(1);
+                    currentPlayerDisplay.DOFade(1, 1).OnComplete(() =>
+                    {
+                        currentPlayerDisplay.DOFade(0, 1).SetDelay(1);
+                    });
                 });
-            });
+            }
         }
         else
         {
@@ -87,7 +94,7 @@ public class ClayWarsRoundManager : MonoBehaviour
         // Fade in and out animation for roundDisplay
         roundDisplay.DOFade(0, 0).OnComplete(() =>
         {
-            if(currentRoundNumber == rounds)
+            if(currentRoundNumber == rounds - 1)
             {
                 roundDisplay.text = "LAST ROUND";
             }
