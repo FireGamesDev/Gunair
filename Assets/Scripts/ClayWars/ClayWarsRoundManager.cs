@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,10 +34,20 @@ public class ClayWarsRoundManager : MonoBehaviour
         {
             currentPlayerIndexInRound = 0;
         }
-        else
+        
+        if (ClayWarsGameManager.playerCount > 1)
         {
             currentRoundNumber = 0;
         }
+
+        StartCoroutine(FirstRound());
+    }
+
+    private IEnumerator FirstRound()
+    {
+        yield return new WaitForSeconds(1);
+
+        NextPlayer();
 
         NextRound();
     }
@@ -49,11 +60,10 @@ public class ClayWarsRoundManager : MonoBehaviour
         }
     }
 
-    public void NextRound()
+    public void NextPlayer()
     {
         if (ClayWarsGameManager.playerCount > 1)
         {
-            //next player
             currentPlayerIndexInRound++;
 
             shotgun.ReloadShotgunOnNewRoundInstantly();
@@ -63,7 +73,13 @@ public class ClayWarsRoundManager : MonoBehaviour
                 currentPlayerIndexInRound = 0;
                 currentRoundNumber += 1;
             }
+        }  
+    }
 
+    public void NextRound()
+    {
+        if (ClayWarsGameManager.playerCount > 1)
+        {
             if (currentRoundNumber < rounds)
             {
                 currentPlayerDisplay.text = ClayWarsScoreCounter.Instance.GetPlayerNameByIndex(currentPlayerIndexInRound);

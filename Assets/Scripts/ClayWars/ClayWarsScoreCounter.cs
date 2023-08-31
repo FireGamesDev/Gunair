@@ -11,6 +11,8 @@ public class ClayWarsScoreCounter : MonoBehaviour
     [SerializeField] private GameObject textPopup;
     [SerializeField] private Transform parent;
 
+    [SerializeField] private AnimationCurve placingChangeCurve;
+
     private List<ScoreRow> scoreRows = new List<ScoreRow>();
 
     public static ClayWarsScoreCounter Instance;
@@ -53,40 +55,44 @@ public class ClayWarsScoreCounter : MonoBehaviour
 
     private void UpdateLeaderboard()
     {
+        //anim
+        for (int i = 0; i < scoreRows.Count; i++)
+        {
+            int newPlacing = GetPlacingForScore(scoreRows[i].score);
+            AnimatePlacingChange(i, scoreRows[i].currentPlacing, newPlacing);
+        }
+
+        //execute
         for (int i = 0; i < scoreRows.Count; i++)
         {
             int newPlacing = GetPlacingForScore(scoreRows[i].score);
             scoreRows[i].UpdatePlacing(newPlacing);
-            AnimatePlacingChange(i, scoreRows[i].currentPlacing, newPlacing);
         }
     }
 
 
     private int GetPlacingForScore(int score)
     {
-        // Sort scoreRows by score in descending order
         scoreRows.Sort((a, b) => b.score.CompareTo(a.score));
 
-        // Find the index of the first element with a score less than or equal to the given score
-        int index = scoreRows.FindIndex(row => row.score <= score);
+        int index = scoreRows.FindIndex(row => row.score == score);
 
-        // If no such element is found, the player is currently the first
         if (index == -1)
         {
             return 1;
         }
 
-        // Return the placing by adding 1 to the index (index is 0-based)
         return index + 1;
     }
-
-
     private void AnimatePlacingChange(int playerIndex, int previousPlacing, int newPlacing)
     {
         if (newPlacing < previousPlacing)
         {
-            float newYPosition = scoreRows[newPlacing - 1].transform.position.y;
-            scoreRows[playerIndex].transform.DOMoveY(newYPosition, 0.5f);
+            float newYPosition = scoreRows[newPlacing - 1].GetComponent<RectTransform>().anchoredPosition.y;
+            Vector2 targetAnchoredPosition = new Vector2(scoreRows[playerIndex].GetComponent<RectTransform>().anchoredPosition.x, newYPosition);
+
+            float duration = 0.5f;
+            scoreRows[playerIndex].GetComponent<RectTransform>().DOAnchorPos(targetAnchoredPosition, duration).SetEase(placingChangeCurve);
         }
     }
 

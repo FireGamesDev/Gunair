@@ -32,6 +32,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     private void Start()
     {
+        NewRound();
+
         StartCoroutine(SpawnerRoutine());
     }
 
@@ -48,6 +50,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 if (ClayWarsGameManager.playerCount > 1)
                 {
                     yield return new WaitForSeconds(4f);
+
+                    ClayWarsRoundManager.Instance.NextPlayer();
                 }
 
                 NewRound();

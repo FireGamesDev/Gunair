@@ -878,7 +878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230889225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
@@ -1035,7 +1035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &305809487
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3336,7 +3336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 374}
+  m_AnchoredPosition: {x: 100, y: 375}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954582841
@@ -3389,7 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1016d024dc3ea45ad7e3daf306f8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: 130, y: 300}
+  movement: {x: 130, y: 375}
   yoyoDuration: 0.2
   delayBeforeDisable: 2
 --- !u!1 &956688904
@@ -6381,6 +6381,30 @@ MonoBehaviour:
   prefab: {fileID: 6683850593534246889, guid: 24c921c5baefde64684e6e80ed994c75, type: 3}
   textPopup: {fileID: 5718932709261655618, guid: dd35e0622c7f96949aab22d610491f33, type: 3}
   parent: {fileID: 230889226}
+  placingChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1364235025
 GameObject:
   m_ObjectHideFlags: 0
@@ -8845,7 +8869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -100, y: 374}
+  m_AnchoredPosition: {x: -100, y: 375}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2088074225
@@ -8898,7 +8922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e1016d024dc3ea45ad7e3daf306f8bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {x: -130, y: 300}
+  movement: {x: -130, y: 375}
   yoyoDuration: 0.2
   delayBeforeDisable: 2
 --- !u!1 &2103711240
