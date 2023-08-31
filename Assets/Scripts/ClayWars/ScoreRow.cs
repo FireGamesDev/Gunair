@@ -7,12 +7,10 @@ public class ScoreRow : MonoBehaviour
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text placingText;
 
     [SerializeField] private float rowHeight = 10f;
 
     public int score { get; private set; } = 0;
-    public int currentPlacing { get; private set; } = 0;
     public string playerName { get; private set; }
 
     public void SetRow(string playerName, int score, int placing)
@@ -22,7 +20,6 @@ public class ScoreRow : MonoBehaviour
         this.playerName = playerName;
 
         scoreText.text = score.ToString();
-        placingText.text = placing.ToString();
 
         this.score = score;
 
@@ -43,12 +40,5 @@ public class ScoreRow : MonoBehaviour
         scoreText.text = score.ToString();
 
         this.score = score;
-    }
-
-    public void UpdatePlacing(int currentPlacing)
-    {
-        this.currentPlacing = currentPlacing;
-
-        placingText.text = currentPlacing.ToString() + ".";
     }
 }

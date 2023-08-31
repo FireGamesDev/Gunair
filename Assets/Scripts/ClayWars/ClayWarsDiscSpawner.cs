@@ -25,6 +25,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     public static ClayWarsDiscSpawner Instance;
 
+    public int currentPlayerIndexToGiveScoreTo { get; set; } = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -45,13 +47,19 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             if (discNumberForTheRound <= 0)
             {
+                ClayWarsRoundManager.Instance.NextPlayer();
+
                 ClayWarsRoundManager.Instance.NextRound();
 
                 if (ClayWarsGameManager.playerCount > 1)
                 {
-                    yield return new WaitForSeconds(4f);
+                    yield return new WaitForSeconds(5f);
 
-                    ClayWarsRoundManager.Instance.NextPlayer();
+                    currentPlayerIndexToGiveScoreTo = ClayWarsRoundManager.Instance.currentPlayerIndexInRound;
+                }
+                else
+                {
+                    yield return new WaitForSeconds(2f);
                 }
 
                 NewRound();

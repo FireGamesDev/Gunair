@@ -37,62 +37,11 @@ public class ClayWarsScoreCounter : MonoBehaviour
         }
     }
 
-    public void UpdatePlayerScoreAndPlacing(int playerIndex, int scoresToAdd)
+    public void UpdatePlayerScore(int playerIndex, int scoresToAdd)
     {
         if (playerIndex >= 0 && playerIndex < scoreRows.Count)
         {
             scoreRows[playerIndex].AddScore(scoresToAdd);
-
-            if(scoreRows.Count > 1)
-            {
-                int newPlacing = GetPlacingForScore(scoreRows[playerIndex].score);
-                scoreRows[playerIndex].UpdatePlacing(newPlacing);
-
-                UpdateLeaderboard();
-            }
-        }
-    }
-
-    private void UpdateLeaderboard()
-    {
-        //anim
-        for (int i = 0; i < scoreRows.Count; i++)
-        {
-            int newPlacing = GetPlacingForScore(scoreRows[i].score);
-            AnimatePlacingChange(i, scoreRows[i].currentPlacing, newPlacing);
-        }
-
-        //execute
-        for (int i = 0; i < scoreRows.Count; i++)
-        {
-            int newPlacing = GetPlacingForScore(scoreRows[i].score);
-            scoreRows[i].UpdatePlacing(newPlacing);
-        }
-    }
-
-
-    private int GetPlacingForScore(int score)
-    {
-        scoreRows.Sort((a, b) => b.score.CompareTo(a.score));
-
-        int index = scoreRows.FindIndex(row => row.score == score);
-
-        if (index == -1)
-        {
-            return 1;
-        }
-
-        return index + 1;
-    }
-    private void AnimatePlacingChange(int playerIndex, int previousPlacing, int newPlacing)
-    {
-        if (newPlacing < previousPlacing)
-        {
-            float newYPosition = scoreRows[newPlacing - 1].GetComponent<RectTransform>().anchoredPosition.y;
-            Vector2 targetAnchoredPosition = new Vector2(scoreRows[playerIndex].GetComponent<RectTransform>().anchoredPosition.x, newYPosition);
-
-            float duration = 0.5f;
-            scoreRows[playerIndex].GetComponent<RectTransform>().DOAnchorPos(targetAnchoredPosition, duration).SetEase(placingChangeCurve);
         }
     }
 

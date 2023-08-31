@@ -34,7 +34,7 @@ public class ClayWarsGameManager : MonoBehaviour
 
     public void UpdateScore(int scoresToAdd)
     {
-        scoreCounter.UpdatePlayerScoreAndPlacing(ClayWarsRoundManager.Instance.currentPlayerIndexInRound, scoresToAdd);
+        scoreCounter.UpdatePlayerScore(ClayWarsDiscSpawner.Instance.currentPlayerIndexToGiveScoreTo, scoresToAdd);
     }
 
     public void EndGame()
