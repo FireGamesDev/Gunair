@@ -49,5 +49,10 @@ public class InvaderEnemyVerticalMovement : MonoBehaviour
                 transform.position = newPosition;
             }
         }
+
+        if (transform.position.y < -5f)
+        {
+            GameObject.Find("GameManager").GetComponent<GameManager>().End();
+        }
     }
 }

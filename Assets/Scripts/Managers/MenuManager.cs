@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private GameObject clayWarsGo;
+
+    public static bool isClaywarsActive = false;
+    public static bool isMinigamesActive = false;
 
     private void Update()
     {
@@ -14,6 +18,25 @@ public class MenuManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+
+    private void Start()
+    {
+        if (isClaywarsActive)
+        {
+            clayWarsGo.SetActive(true);
+        }
+
+        if (isMinigamesActive)
+        {
+            Levels();
+        }
+    }
+
+    public void ResetMenu()
+    {
+        isClaywarsActive = false;
+        isMinigamesActive = false;
     }
 
     public void Levels()

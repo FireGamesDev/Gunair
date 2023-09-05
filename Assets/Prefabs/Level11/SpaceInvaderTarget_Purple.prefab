@@ -210,6 +210,7 @@ MonoBehaviour:
   score: 10
   isObstacle: 0
   notMovingTarget: 1
+  isClay: 0
   hitPrefab: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
   explosionEffect: {fileID: 5229988752496570674, guid: 6608e9e2d23c5f448841f13ffdfe0527, type: 3}
   scorePopup: {fileID: 5718932709261655618, guid: dd35e0622c7f96949aab22d610491f33, type: 3}
@@ -242,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1ec894fdb443a458525e2476034142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 6
   horizontalMoveDistance: 10
   descentDistance: 1
 --- !u!54 &4839988176560900598

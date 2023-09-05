@@ -86,6 +86,8 @@ public class GunManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
+            if (isInfinite) return;
+
             if (!reloading)
             {
                 if (!noReload)

@@ -7,6 +7,7 @@ public class SpaceInvaderSpawner : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Transform spawnpoint;
     [SerializeField] private List<GameObject> targets = new List<GameObject>();
+    [SerializeField] private List<GameObject> enemies = new List<GameObject>();
     [SerializeField] private GameObject team;
     [SerializeField] private float spawnTime;
     [SerializeField] private bool isVertical;
@@ -29,10 +30,14 @@ public class SpaceInvaderSpawner : MonoBehaviour
             {
                 GameObject enemy = Instantiate(team, spawnpoint.position, Quaternion.identity);
                 enemy.GetComponent<InvaderEnemyVerticalMovement>().enabled = true;
+
+                enemies.Add(enemy);
             }
             else
             {
                 GameObject enemy = Instantiate(targets[Random.Range(0, targets.Count)], spawnpoint.position, Quaternion.identity);
+
+                enemies.Add(enemy);
 
                 if (!isVertical)
                 {
@@ -45,5 +50,16 @@ public class SpaceInvaderSpawner : MonoBehaviour
                 }
             }
         }
+
+        DeleteEnemyObjects();
     }
+
+    private void DeleteEnemyObjects()
+    {
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+    }
+
 }

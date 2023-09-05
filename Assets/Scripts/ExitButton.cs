@@ -13,6 +13,9 @@ public class ExitButton : MonoBehaviour, ITarget
     {
         if (isSure)
         {
+            MenuManager.isMinigamesActive = true;
+            MenuManager.isClaywarsActive = false;
+
             SceneManager.LoadScene("Menu");
         }
         else

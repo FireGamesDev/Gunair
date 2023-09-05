@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
 
     public void Menu()
     {
+        MenuManager.isMinigamesActive = true;
+        MenuManager.isClaywarsActive = false;
+
         SceneManager.LoadScene("Menu");
     }
 }

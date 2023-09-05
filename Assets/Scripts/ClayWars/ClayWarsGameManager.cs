@@ -46,7 +46,11 @@ public class ClayWarsGameManager : MonoBehaviour
             int winnerScore = ClayWarsScoreCounter.Instance.GetHighestScore();
             string winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
             winnerScoreText.text = winnerScore.ToString();
-            endGameText.text = "The winner is: " + winnerName;
+
+            if (playerCount > 1)
+            {
+                endGameText.text = "The winner is: " + winnerName;
+            }
 
             endScreen.SetActive(true);
         }
@@ -60,6 +64,9 @@ public class ClayWarsGameManager : MonoBehaviour
 
     public void Menu()
     {
+        MenuManager.isClaywarsActive = true;
+        MenuManager.isMinigamesActive = false;
+
         SceneManager.LoadScene("Menu");
     }
 }

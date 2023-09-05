@@ -105,14 +105,24 @@ public class ClayWarsRoundManager : MonoBehaviour
             return;
         }
 
-        roundIndicatorCircles[currentRoundNumber].GetComponent<Image>().color = Color.white;
+        if (currentRoundNumber == rounds - 1)
+        {
+            //last round
+            roundIndicatorCircles[currentRoundNumber].GetComponent<Image>().color = Color.red;
+        }
+        else
+        {
+            roundIndicatorCircles[currentRoundNumber].GetComponent<Image>().color = Color.white;
+        }
+            
 
         // Fade in and out animation for roundDisplay
         roundDisplay.DOFade(0, 0).OnComplete(() =>
         {
-            if(currentRoundNumber == rounds - 1)
+            if (currentRoundNumber == rounds - 1)
             {
                 roundDisplay.text = "LAST ROUND";
+                roundDisplay.color = Color.red;
             }
             else roundDisplay.text = "ROUND " + (currentRoundNumber + 1).ToString();
             roundDisplay.DOFade(1, 1).OnComplete(() =>
