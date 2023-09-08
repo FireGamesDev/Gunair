@@ -8342,7 +8342,7 @@ MonoBehaviour:
   roundDisplay: {fileID: 1364235027}
   currentPlayerDisplay: {fileID: 1355786588}
   shotgun: {fileID: 1510434528}
-  rounds: 1
+  rounds: 5
   roundCirclePrefab: {fileID: 2224324022622401316, guid: 6a45391d1627fcc48a1f3034a2670578, type: 3}
   parent: {fileID: 133460024}
 --- !u!4 &1799528989
