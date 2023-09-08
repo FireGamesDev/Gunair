@@ -167,7 +167,7 @@ public class ScoreManager : MonoBehaviour
 
     private void UpdateAccuracy()
     {
-        currentAccuracy = (float)shotsHit / shotsFired * 100f;
+        currentAccuracy = Mathf.Min((float)shotsHit / shotsFired * 100f, 100f);
 
         accuracyText.text = "Accuracy: " + currentAccuracy.ToString("F1");
     }

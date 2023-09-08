@@ -6,8 +6,10 @@ using System.Linq;
 public class ClayWarsScoreCounter : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject endRowPrefab;
     [SerializeField] private GameObject textPopup;
-    [SerializeField] private Transform parent;
+    public Transform parent;
+    [SerializeField] private Transform endRowParent;
     [SerializeField] private TMPro.TMP_Text accuracyText;
 
     private List<ScoreRow> scoreRows = new List<ScoreRow>();
@@ -71,6 +73,24 @@ public class ClayWarsScoreCounter : MonoBehaviour
         }
 
         UpdateAccuracy(currentPlayerIndex);
+    }
+
+    public void EndExtraScore(int playerIndex, int scoresToAdd)
+    {
+        SpawnEndRow(playerIndex, scoresToAdd);
+
+        UpdatePlayerScore(playerIndex, scoresToAdd);
+    }
+
+    private void SpawnEndRow(int playerIndex, int scoresToAdd)
+    {
+        ScoreRow row = scoreRows[playerIndex];
+
+        ScoreRow endRow = Instantiate(endRowPrefab, endRowParent).GetComponent<ScoreRow>();
+
+        endRow.SetRow(row.playerName, row.score, 0);
+        endRow.gameObject.transform.Find("Extra").GetComponent<TMPro.TMP_Text>().text = "+ " + scoresToAdd.ToString();
+        endRow.gameObject.transform.Find("Final").GetComponent<TMPro.TMP_Text>().text = "= " + (row.score + scoresToAdd).ToString();
     }
 
     public void TextFeedback(int score, Vector3 pos)
@@ -166,12 +186,17 @@ public class ClayWarsScoreCounter : MonoBehaviour
 
     private void UpdateAccuracy(int playerIndex)
     {
+        UpdateAccuracyText(GetAccuracyOfPlayer(playerIndex));
+    }
+
+    public float GetAccuracyOfPlayer(int playerIndex)
+    {
         float accuracy = 0f;
         if (shotsFiredByPlayers.ContainsKey(playerIndex) && shotsHitByPlayers.ContainsKey(playerIndex))
         {
-            accuracy = (float)shotsHitByPlayers[playerIndex] / shotsFiredByPlayers[playerIndex] * 100f;
+            accuracy = Mathf.Min((float)shotsHitByPlayers[playerIndex] / shotsFiredByPlayers[playerIndex] * 100f, 100f);
         }
-        UpdateAccuracyText(accuracy);
+        return accuracy;
     }
 
     public void NextPlayer(int playerIndex)

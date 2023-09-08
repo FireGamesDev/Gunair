@@ -43,21 +43,42 @@ public class ClayWarsGameManager : MonoBehaviour
         {
             isEnded = true;
 
-            int winnerScore = ClayWarsScoreCounter.Instance.GetHighestScore();
-            string winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
-            winnerScoreText.text = winnerScore.ToString();
-
-            if (playerCount > 1)
-            {
-                endGameText.text = "The winner is: " + winnerName;
-            }
-
-            if (winnerName.Contains(PlayerPrefs.GetString("Nickname", "")))
-            {
-                PlayfabLeaderboard.SubmitScore(winnerScore);
-            }
-
             endScreen.SetActive(true);
+
+            ClayWarsScoreCounter.Instance.parent.gameObject.SetActive(false);
+
+            StartCoroutine(ScoreDisplayRoutine());
+        }
+    }
+
+    private IEnumerator ScoreDisplayRoutine()
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            int scoresToAdd = (int)scoreCounter.GetAccuracyOfPlayer(i);
+            scoreCounter.EndExtraScore(i, scoresToAdd);
+            yield return new WaitForSeconds(3);
+        }
+
+        yield return new WaitForSeconds(1);
+
+        DisplayWinner();
+    }
+
+    private void DisplayWinner()
+    {
+        int winnerScore = ClayWarsScoreCounter.Instance.GetHighestScore();
+        string winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
+        winnerScoreText.text = winnerScore.ToString();
+
+        if (playerCount > 1)
+        {
+            endGameText.text = "The winner is: " + winnerName;
+        }
+
+        if (winnerName.Contains(PlayerPrefs.GetString("Nickname", "")))
+        {
+            PlayfabLeaderboard.SubmitScore(winnerScore);
         }
     }
 
