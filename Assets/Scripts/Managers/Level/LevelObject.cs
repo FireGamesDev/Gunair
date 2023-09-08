@@ -11,8 +11,9 @@ public class LevelObject : MonoBehaviour
     [SerializeField] private GameObject lockGo;
     [SerializeField] private List<GameObject> starList = new List<GameObject>();
     [SerializeField] private TMPro.TMP_Text secondText;
+    [SerializeField] private TMPro.TMP_Text accuracyText;
 
-    public void SetLevel(int levelNumber, int stars, bool isLocked)
+    public void SetLevel(int levelNumber, int stars, float accuracy, bool isLocked)
     {
         levelButton.interactable = !isLocked;
 
@@ -28,6 +29,8 @@ public class LevelObject : MonoBehaviour
             {
                 starList[i].SetActive(true);
             }
+
+            accuracyText.text = accuracy.ToString("F1");
 
             levelButton.onClick.AddListener(() => { SceneManager.LoadScene("Level" + levelNumber.ToString()); });
         }

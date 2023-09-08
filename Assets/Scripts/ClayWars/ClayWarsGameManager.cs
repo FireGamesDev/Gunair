@@ -52,6 +52,11 @@ public class ClayWarsGameManager : MonoBehaviour
                 endGameText.text = "The winner is: " + winnerName;
             }
 
+            if (winnerName.Contains(PlayerPrefs.GetString("Nickname", "")))
+            {
+                PlayfabLeaderboard.SubmitScore(winnerScore);
+            }
+
             endScreen.SetActive(true);
         }
     }

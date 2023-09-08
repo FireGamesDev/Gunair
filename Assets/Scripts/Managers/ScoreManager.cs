@@ -17,6 +17,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TMP_Text targetText;
     [SerializeField] private TMP_Text higscoreText;
     [SerializeField] private TMP_Text newHighScore;
+    [SerializeField] private TMP_Text accuracyText;
     [SerializeField] private GameObject highscoreGo;
     [SerializeField] private GameObject scorePopup;
 
@@ -28,6 +29,11 @@ public class ScoreManager : MonoBehaviour
 
     public int score { get; private set; } = 0;
     private int higscore = 0;
+
+    private float currentAccuracy = 0f;
+    public int shotsFired { get; set; } = 0;
+    private int shotsHit = 0;
+
 
     private void Start()
     {
@@ -49,6 +55,10 @@ public class ScoreManager : MonoBehaviour
         Destroy(popup, 1);
 
         CheckIfEnded();
+
+        shotsHit++;
+
+        UpdateAccuracy();
     }
     
     public void RemoveScore(int value)
@@ -143,7 +153,23 @@ public class ScoreManager : MonoBehaviour
                 }
             }
         }
-        LevelManager.SaveLevelStars(levelNumber, starRating, time);
+
+        float accuracy = currentAccuracy;
+
+        LevelManager.SaveLevelStars(levelNumber, starRating, time, accuracy);
+    }
+
+    public void ShotFired()
+    {
+        shotsFired += 1;
+        UpdateAccuracy();
+    }
+
+    private void UpdateAccuracy()
+    {
+        currentAccuracy = (float)shotsHit / shotsFired * 100f;
+
+        accuracyText.text = "Accuracy: " + currentAccuracy.ToString("F1");
     }
 
     public void SetFontColors()

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using DG.Tweening; // Make sure you have DOTween imported
 using System.Linq;
 
 public class ClayWarsScoreCounter : MonoBehaviour
@@ -10,12 +8,18 @@ public class ClayWarsScoreCounter : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject textPopup;
     [SerializeField] private Transform parent;
-
-    [SerializeField] private AnimationCurve placingChangeCurve;
+    [SerializeField] private TMPro.TMP_Text accuracyText;
 
     private List<ScoreRow> scoreRows = new List<ScoreRow>();
 
+    private Dictionary<int, int> shotsFiredByPlayers = new Dictionary<int, int>();
+    private Dictionary<int, int> shotsHitByPlayers = new Dictionary<int, int>();
+
     public static ClayWarsScoreCounter Instance;
+
+    private float currentAccuracy = 0f;
+    public int shotsFired { get; set; } = 0;
+    public int shotsHit { get; set; } = 0;
 
     private void Awake()
     {
@@ -25,6 +29,8 @@ public class ClayWarsScoreCounter : MonoBehaviour
     private void Start()
     {
         InitPlayers();
+
+        UpdateAccuracyText(0f);
     }
 
     private void InitPlayers()
@@ -32,7 +38,15 @@ public class ClayWarsScoreCounter : MonoBehaviour
         for (int i = 1; i <= ClayWarsGameManager.playerCount; i++)
         {
             ScoreRow row = Instantiate(prefab, parent).GetComponent<ScoreRow>();
-            row.SetRow("Player" + i.ToString(), 0, i);
+            if (i == 1)
+            {
+                row.SetRow(PlayerPrefs.GetString("Nickname", ""), 0, i);
+            }
+            else
+            {
+                row.SetRow(PlayerPrefs.GetString("Nickname", "") + i.ToString(), 0, i);
+            }
+            
             scoreRows.Add(row);
         }
     }
@@ -43,6 +57,20 @@ public class ClayWarsScoreCounter : MonoBehaviour
         {
             scoreRows[playerIndex].AddScore(scoresToAdd);
         }
+
+        shotsHit++;
+        int currentPlayerIndex = ClayWarsRoundManager.Instance.currentPlayerIndexInRound;
+
+        if (shotsHitByPlayers.ContainsKey(currentPlayerIndex))
+        {
+            shotsHitByPlayers[currentPlayerIndex] = shotsHit;
+        }
+        else
+        {
+            shotsHitByPlayers.Add(currentPlayerIndex, shotsHit);
+        }
+
+        UpdateAccuracy(currentPlayerIndex);
     }
 
     public void TextFeedback(int score, Vector3 pos)
@@ -110,5 +138,62 @@ public class ClayWarsScoreCounter : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private void UpdateAccuracyText(float value)
+    {
+        currentAccuracy = value;
+        accuracyText.text = "Accuracy: " + currentAccuracy.ToString("F1");
+    }
+    
+    public void ShotFired()
+    {
+        shotsFired += 1;
+
+        int currentPlayerIndex = ClayWarsRoundManager.Instance.currentPlayerIndexInRound;
+
+        if (shotsFiredByPlayers.ContainsKey(currentPlayerIndex))
+        {
+            shotsFiredByPlayers[currentPlayerIndex] = shotsFired;
+        }
+        else
+        {
+            shotsFiredByPlayers.Add(currentPlayerIndex, shotsFired);
+        }
+
+        UpdateAccuracy(ClayWarsRoundManager.Instance.currentPlayerIndexInRound);
+    }
+
+    private void UpdateAccuracy(int playerIndex)
+    {
+        float accuracy = 0f;
+        if (shotsFiredByPlayers.ContainsKey(playerIndex) && shotsHitByPlayers.ContainsKey(playerIndex))
+        {
+            accuracy = (float)shotsHitByPlayers[playerIndex] / shotsFiredByPlayers[playerIndex] * 100f;
+        }
+        UpdateAccuracyText(accuracy);
+    }
+
+    public void NextPlayer(int playerIndex)
+    {
+        if (shotsFiredByPlayers.ContainsKey(playerIndex))
+        {
+            shotsFired = shotsFiredByPlayers[playerIndex];
+        }
+        else
+        {
+            shotsFired = 0;
+        }
+        
+        if (shotsHitByPlayers.ContainsKey(playerIndex))
+        {
+            shotsHit = shotsHitByPlayers[playerIndex];
+        }
+        else
+        {
+            shotsHit = 0;
+        }
+
+        UpdateAccuracy(playerIndex);
     }
 }

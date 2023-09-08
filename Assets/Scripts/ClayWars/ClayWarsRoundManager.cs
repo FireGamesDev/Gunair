@@ -73,7 +73,9 @@ public class ClayWarsRoundManager : MonoBehaviour
                 currentPlayerIndexInRound = 0;
                 currentRoundNumber += 1;
             }
-        }  
+        }
+
+        ClayWarsScoreCounter.Instance.NextPlayer(currentPlayerIndexInRound);
     }
 
     public void NextRound()

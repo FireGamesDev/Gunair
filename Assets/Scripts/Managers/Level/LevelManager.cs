@@ -51,7 +51,9 @@ public class LevelManager : MonoBehaviour
 
             previousLevelStars = stars;
 
-            level.SetLevel(i, stars, isLocked);
+            float accuracy = LoadAccuracy(i);
+
+            level.SetLevel(i, stars, accuracy, isLocked);
 
             LoadBestTime(i ,level);
         }
@@ -83,7 +85,13 @@ public class LevelManager : MonoBehaviour
         level.SetBestTime(loadedSecond);
     }
 
-    public static void SaveLevelStars(int levelIndex, int stars, float second)
+    private float LoadAccuracy(int levelIndex)
+    {
+        string accuracyKey = $"Level{levelIndex}_Accuracy";
+        return PlayerPrefs.GetFloat(accuracyKey, 0);
+    }
+
+    public static void SaveLevelStars(int levelIndex, int stars, float second, float accuracy)
     {
         string key = $"Level{levelIndex}_Stars";
         int previousStars = PlayerPrefs.GetInt(key, 0);
@@ -91,6 +99,14 @@ public class LevelManager : MonoBehaviour
         if (stars > previousStars)
         {
             PlayerPrefs.SetInt(key, stars);
+        }
+        
+        string accuracyKey = $"Level{levelIndex}_Accuracy";
+        float previousAccuracy = PlayerPrefs.GetInt(accuracyKey, 0);
+
+        if (accuracy > previousAccuracy)
+        {
+            PlayerPrefs.SetFloat(accuracyKey, accuracy);
         }
 
         float previousSecond = PlayerPrefs.GetFloat($"{key}_Second", -1f);

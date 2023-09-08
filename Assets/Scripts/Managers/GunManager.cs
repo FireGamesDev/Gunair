@@ -131,6 +131,17 @@ public class GunManager : MonoBehaviour
 
         cursor.SetTrigger("Shoot");
 
+        if (GameObject.Find("ScoreManager") != null)
+        {
+            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().ShotFired();
+        }
+        
+        if (GameObject.Find("ClayWarsScoreCounter") != null)
+        {
+            GameObject.Find("ClayWarsScoreCounter").GetComponent<ClayWarsScoreCounter>().ShotFired();
+        }
+        
+
         if (!isInfinite)
         {
             currentBulletCount--;
