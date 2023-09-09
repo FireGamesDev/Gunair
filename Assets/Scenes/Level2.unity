@@ -4967,7 +4967,7 @@ MonoBehaviour:
   targetText: {fileID: 45970964}
   higscoreText: {fileID: 1297147252}
   newHighScore: {fileID: 956688906}
-  accuracyText: {fileID: 0}
+  accuracyText: {fileID: 557466438}
   highscoreGo: {fileID: 956688904}
   scorePopup: {fileID: 837810495558810064, guid: 5015a880d7c12c34d9470ed3c0889eee, type: 3}
   stars:
