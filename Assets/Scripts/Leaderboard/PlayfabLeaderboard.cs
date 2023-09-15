@@ -93,7 +93,7 @@ public class PlayfabLeaderboard : MonoBehaviour
 
         empty.SetActive(true);
 
-        List<PlayerLeaderboardEntry> sortedEntries = result.Leaderboard.OrderBy(entry => entry.StatValue).ToList();
+        List<PlayerLeaderboardEntry> sortedEntries = result.Leaderboard; //.OrderBy(entry => entry.StatValue).ToList();
         int localPlayerRank = sortedEntries.FindIndex(entry => entry.DisplayName == PlayerPrefs.GetString("Nickname"));
         int rank = 1;
         foreach (var item in sortedEntries)

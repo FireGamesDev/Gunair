@@ -2,6 +2,7 @@ using Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
@@ -241,6 +242,11 @@ public class GunManager : MonoBehaviour
         }
         else
         {
+            foreach (var item in clayWarsBullets)
+            {
+                item.SetActive(false);
+            }
+
             for (int i = 0; i < bulletCount; i++)
             {
                 clayWarsBullets[i].SetActive(true);
@@ -250,6 +256,8 @@ public class GunManager : MonoBehaviour
 
     private void SetMag()
     {
+        if (bulletUIParent != null) bulletUIParent.gameObject.GetComponent<HorizontalLayoutGroup>().spacing = 0f;
+
         DestroyAmmoDisplay();
 
         currentBulletCount = magSize;
@@ -287,7 +295,7 @@ public class GunManager : MonoBehaviour
             yield return new WaitForSeconds(0.3f); // wait for the sound effect to play
         }
 
-        reloadingText.SetActive(true);
+        //reloadingText.SetActive(true);
 
         while (currentBulletCount < magSize)
         {
@@ -308,7 +316,7 @@ public class GunManager : MonoBehaviour
             Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFXWithVolume(shotgunReloadEnd, 0.3f);
         }
 
-        reloadingText.SetActive(false);
+        //reloadingText.SetActive(false);
         reloading = false;
     }
 
@@ -327,6 +335,8 @@ public class GunManager : MonoBehaviour
 
     private void DestroyAmmoDisplay()
     {
+        if (bulletUIParent == null) return;
+
         int childCount = bulletUIParent.transform.childCount;
         for (int i = childCount - 1; i >= 0; i--)
         {
@@ -337,6 +347,13 @@ public class GunManager : MonoBehaviour
 
     private void DestroyAnAmmo()
     {
-        Destroy(bulletUIParent.transform.GetChild(0).gameObject);
+        if (bulletUIParent == null)
+        {
+            SetClayWarsBulletDisplay(currentBulletCount);
+        }
+        else
+        {
+            Destroy(bulletUIParent.transform.GetChild(0).gameObject);
+        }
     }
 }

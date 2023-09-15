@@ -54,6 +54,6 @@ public class MenuManager : MonoBehaviour
     {
         ClayWarsGameManager.playerCount = playerCount;
 
-        SceneManager.LoadScene("ClayWars");
+        SceneManager.LoadScene("DesertScene");
     }
 }

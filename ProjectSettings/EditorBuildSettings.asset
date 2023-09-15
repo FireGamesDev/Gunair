@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: ef377414cb16a3f4d97160064dde8f0a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DesertScene.unity
     guid: b02577a54950ef949a2fcd9d37a1d40c
   - enabled: 1
