@@ -13,12 +13,12 @@ public class FollowMouse : MonoBehaviour
     {
         if (gameManager != null && gameManager.isEnded) 
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
         
         if (clayGameManager != null && clayGameManager.isEnded) 
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         }
 
         Cursor.visible = false;

@@ -26,8 +26,8 @@ public class ClayWarsGameManager : MonoBehaviour
         {
             if (!Cursor.visible)
             {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                //Cursor.visible = true;
+                //Cursor.lockState = CursorLockMode.None;
             }
         }
     }

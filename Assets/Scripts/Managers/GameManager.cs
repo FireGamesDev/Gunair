@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     {
         if (isEnded)
         {
-            Cursor.visible = true;
+            //Cursor.visible = true;
         }  
     }
 
