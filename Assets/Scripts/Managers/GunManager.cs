@@ -32,6 +32,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Transform bulletUIParent;
     [SerializeField] private GameObject bulletIconPrefab;
     [SerializeField] private GameObject infiniteBullet;
+    [SerializeField] private List<GameObject> clayWarsBullets = new List<GameObject>();
 
     [Header("Reloading")]
     [SerializeField] private float reloadTime = 3f;
@@ -219,7 +220,32 @@ public class GunManager : MonoBehaviour
     {
         currentBulletCount++;
 
-        Instantiate(bulletIconPrefab, bulletUIParent);
+        if (bulletUIParent != null)
+        {
+            Instantiate(bulletIconPrefab, bulletUIParent);
+        }
+        else
+        {
+            SetClayWarsBulletDisplay(currentBulletCount);
+        }
+    }
+
+    private void SetClayWarsBulletDisplay(int bulletCount)
+    {
+        if (bulletCount == 0)
+        {
+            foreach (var item in clayWarsBullets)
+            {
+                item.SetActive(false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < bulletCount; i++)
+            {
+                clayWarsBullets[i].SetActive(true);
+            }
+        }
     }
 
     private void SetMag()
@@ -232,7 +258,14 @@ public class GunManager : MonoBehaviour
         {
             for (int i = 0; i < magSize; i++)
             {
-                Instantiate(bulletIconPrefab, bulletUIParent);
+                if (bulletUIParent != null)
+                {
+                    Instantiate(bulletIconPrefab, bulletUIParent);
+                }
+                else
+                {
+                    SetClayWarsBulletDisplay(currentBulletCount);
+                }
             }
         }
 
