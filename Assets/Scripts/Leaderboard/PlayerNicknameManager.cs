@@ -28,7 +28,7 @@ public class PlayerNicknameManager : MonoBehaviour
         {
             currentPlayerName = PlayerPrefs.GetString("Nickname", "");
             nameDisplay.text = "Signed in as: " + currentPlayerName;
-            //Login(currentPlayerName);
+            Login(currentPlayerName);
         }
         else
         {
@@ -60,7 +60,7 @@ public class PlayerNicknameManager : MonoBehaviour
 
         currentPlayerName = PlayerPrefs.GetString("Nickname", "");
         nameDisplay.text = "Signed in as: " + currentPlayerName;
-        //Login(currentPlayerName);
+        Login(currentPlayerName);
     }
 
     public string GetNickname()
