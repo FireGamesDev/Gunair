@@ -28,14 +28,14 @@ public class PlayerNicknameManager : MonoBehaviour
         {
             currentPlayerName = PlayerPrefs.GetString("Nickname", "");
             nameDisplay.text = "Signed in as: " + currentPlayerName;
-            Login(currentPlayerName);
+            //Login(currentPlayerName);
         }
         else
         {
-            nameChangeMenu.SetActive(true);
-        }
+            //nameChangeMenu.SetActive(true);
 
-        RandomizeNickname();
+            RandomizeNickname();
+        }
     }
 
     public void RandomizeNickname()
@@ -47,6 +47,8 @@ public class PlayerNicknameManager : MonoBehaviour
             letterIndices[i] = Random.Range(0, alphabet.Length);
             UpdateNicknameDisplay(i, alphabet[letterIndices[i]]);
         }
+
+        SetNickname();
     }
 
     public void SetNickname()
@@ -58,7 +60,7 @@ public class PlayerNicknameManager : MonoBehaviour
 
         currentPlayerName = PlayerPrefs.GetString("Nickname", "");
         nameDisplay.text = "Signed in as: " + currentPlayerName;
-        Login(currentPlayerName);
+        //Login(currentPlayerName);
     }
 
     public string GetNickname()
