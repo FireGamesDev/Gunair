@@ -32,9 +32,9 @@ public class PlayerNicknameManager : MonoBehaviour
         }
         else
         {
-            //nameChangeMenu.SetActive(true);
-
             RandomizeNickname();
+
+            nameChangeMenu.SetActive(true);
         }
     }
 
@@ -47,8 +47,6 @@ public class PlayerNicknameManager : MonoBehaviour
             letterIndices[i] = Random.Range(0, alphabet.Length);
             UpdateNicknameDisplay(i, alphabet[letterIndices[i]]);
         }
-
-        SetNickname();
     }
 
     public void SetNickname()

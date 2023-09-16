@@ -1085,10 +1085,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cursor
       objectReference: {fileID: 0}
-    - target: {fileID: 4142631924478321718, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4142631924478321719, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2436,7 +2432,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 17
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
