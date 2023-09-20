@@ -6,7 +6,6 @@ public class FollowMouse : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
     [SerializeField] private ClayWarsGameManager clayGameManager;
-    [SerializeField] private Canvas canvas;
 
     private Vector3 pos;
 
