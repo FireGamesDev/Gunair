@@ -60,6 +60,8 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 120;
+
         SetMag();
     }
 

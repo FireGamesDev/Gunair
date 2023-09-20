@@ -108,4 +108,12 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             if (scoreManager != null) scoreManager.RemoveScore(score);
         }
     }
+
+    private void OnDestroy()
+    {
+        if (isClay)
+        {
+            ClayWarsDiscSpawner.Instance.currentDiscCount--;
+        }
+    }
 }

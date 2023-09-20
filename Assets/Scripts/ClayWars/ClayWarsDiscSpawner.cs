@@ -6,6 +6,7 @@ using UnityEngine;
 public class ClayWarsDiscSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject disc;
+    [SerializeField] private GameObject camHelper;
     [SerializeField] private GameObject fromLeftIconUI;
     [SerializeField] private GameObject fromRightIconUI;
     [SerializeField] private CinemachineVirtualCamera cam;
@@ -27,6 +28,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     public int currentPlayerIndexToGiveScoreTo { get; set; } = 0;
 
+    public int currentDiscCount = 0;
+
     private void Awake()
     {
         Instance = this;
@@ -45,6 +48,11 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
 
+            while (currentDiscCount > 0)
+            {
+                yield return new WaitForSeconds(1);
+            }
+
             if (discNumberForTheRound <= 0)
             {
                 ClayWarsRoundManager.Instance.NextPlayer();
@@ -59,7 +67,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 }
                 else
                 {
-                    yield return new WaitForSeconds(2f);
+                    yield return new WaitForSeconds(1.5f);
                 }
 
                 NewRound();
@@ -70,7 +78,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
 
-            if (Random.value < 0.4f)
+            if (Random.value < 0.5f)
             {
                 yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
             }
@@ -81,7 +89,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             fromRightIconUI.SetActive(!toLeft);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.5f);
 
             SpawnDiscAndLaunch(toLeft);
 
@@ -97,12 +105,17 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         if (discNumberForTheRound <= -1) return;
 
+        currentDiscCount++;
+
         if (toLeft)
         {
             var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), false);
 
-            cam.m_LookAt = discGo.transform;
+            var camTargetHelper = Instantiate(camHelper, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
+            camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
+
+            cam.m_LookAt = camTargetHelper.transform;
 
             Destroy(discGo, lifeTime);
         }
@@ -111,7 +124,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             var discGo = Instantiate(disc, _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), true);
 
-            cam.m_LookAt = discGo.transform;
+            var camTargetHelper = Instantiate(camHelper, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
+            camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
+
+            cam.m_LookAt = camTargetHelper.transform;
 
             Destroy(discGo, lifeTime);
         }
