@@ -108,7 +108,7 @@ MonoBehaviour:
   notMovingTarget: 1
   isClay: 1
   hitPrefab: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
-  explosionEffect: {fileID: 5229988752496570674, guid: 6608e9e2d23c5f448841f13ffdfe0527, type: 3}
+  explosionEffect: {fileID: 5229988752496570674, guid: 573426e5096e09843a25e8245ee2ee52, type: 3}
   scorePopup: {fileID: 5718932709261655618, guid: 7d670f74efcd3ed4695d186b0029fe06, type: 3}
   sfxPrefab: {fileID: 358259827338237818, guid: 73aa98402b1f1614db7c66ff8fba6a9b, type: 3}
   hitSFX: {fileID: 8300000, guid: cc63537297fd82a449315b813f86352a, type: 3}
