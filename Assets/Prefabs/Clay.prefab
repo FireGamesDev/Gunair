@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 209532033184129578}
   - component: {fileID: 6937885973564387006}
   - component: {fileID: 5826401312213684652}
+  - component: {fileID: 1946775465383496091}
   m_Layer: 0
   m_Name: Clay
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 209532033184129579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 0.2, z: 2}
+  m_LocalScale: {x: 1.5, y: 0.15, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8509672678581403449}
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c8e30f9b6036804a96069aafabb276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   score: 12
   isObstacle: 0
   notMovingTarget: 1
@@ -176,8 +177,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1786087771151315045}
-  gravityScale: 0.4
-  antiGravityChance: 0.25
+  gravityScale: 0.3
+  antiGravityChance: 0.2
 --- !u!64 &5826401312213684652
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -200,6 +201,21 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1946775465383496091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209532033184129579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c487113530eb7e4b8e9cab01a015cee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &681679645348267224
 GameObject:
   m_ObjectHideFlags: 0

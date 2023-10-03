@@ -112,10 +112,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), false);
 
-            var camTargetHelper = Instantiate(camHelper, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
-            camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
-
-            cam.m_LookAt = camTargetHelper.transform;
+            Vector3 spawnpoint = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position;
+            StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
 
             Destroy(discGo, lifeTime);
         }
@@ -124,13 +122,21 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             var discGo = Instantiate(disc, _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), true);
 
-            var camTargetHelper = Instantiate(camHelper, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
-            camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
-
-            cam.m_LookAt = camTargetHelper.transform;
+            Vector3 spawnpoint = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position;
+            StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
 
             Destroy(discGo, lifeTime);
         }
+    }
+
+    private IEnumerator DelayAndThenTransitionCamera(GameObject discGo, Vector3 spawnpos)
+    {
+        yield return new WaitForSeconds(1.3f);
+
+        var camTargetHelper = Instantiate(camHelper, spawnpos, Quaternion.identity);
+        camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
+
+        cam.m_LookAt = camTargetHelper.transform;
     }
 
     private void ThrowObject(Rigidbody rb, bool isRight)

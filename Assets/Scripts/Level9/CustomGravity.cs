@@ -20,6 +20,5 @@ public class CustomGravity : MonoBehaviour
             Vector3 gravity = gravityScale * Physics.gravity;
             rb.AddForce(gravity, ForceMode.Acceleration);
         }
-        
     }
 }
