@@ -109,7 +109,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         if (toLeft)
         {
-            var discGo = Instantiate(disc, _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position, Quaternion.identity);
+            var spawnpos = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)];
+            var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), false);
 
             Vector3 spawnpoint = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position;
@@ -119,7 +120,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         }
         else
         {
-            var discGo = Instantiate(disc, _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position, Quaternion.identity);
+            var spawnpos = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)];
+            var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
             ThrowObject(discGo.GetComponent<Rigidbody>(), true);
 
             Vector3 spawnpoint = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position;
@@ -145,7 +147,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         float curve = Random.Range(0, curveAmount);
 
         // Calculate the force vector
-        Vector3 force = new Vector3(1f, 0f, 0f) * throwForce;
+        Vector3 force = rb.gameObject.transform.right * throwForce;
 
         if (isRight) force.x *= -1;
 
