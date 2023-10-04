@@ -107,11 +107,14 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         currentDiscCount++;
 
+        bool isBouncy = true;
+
         if (toLeft)
         {
             var spawnpos = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)];
             var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
-            ThrowObject(discGo.GetComponent<Rigidbody>(), false);
+            if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
+            if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), false);
 
             Vector3 spawnpoint = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position;
             StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
@@ -122,7 +125,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         {
             var spawnpos = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)];
             var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
-            ThrowObject(discGo.GetComponent<Rigidbody>(), true);
+            if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
+            if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), true);
 
             Vector3 spawnpoint = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position;
             StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
