@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2608,7 +2608,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 646480224}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834776610}
+        m_TargetAssemblyTypeName: MapChanger, Assembly-CSharp
+        m_MethodName: Next
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &646480224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,6 +3598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834776609}
+  - component: {fileID: 834776610}
   m_Layer: 5
   m_Name: MapChanger
   m_TagString: Untagged
@@ -3616,6 +3629,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 420}
   m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &834776610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834776608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f10247f02f4db45aa1d338b61a913e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMapDisplay: {fileID: 1233823837}
+  sceneNames:
+  - Desert
+  - Forest
 --- !u!1 &848679776
 GameObject:
   m_ObjectHideFlags: 0
@@ -8324,7 +8353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1953190122}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 834776610}
+        m_TargetAssemblyTypeName: MapChanger, Assembly-CSharp
+        m_MethodName: Previous
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1953190122
 MonoBehaviour:
   m_ObjectHideFlags: 0
