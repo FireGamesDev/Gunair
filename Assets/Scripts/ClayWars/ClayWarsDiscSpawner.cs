@@ -165,12 +165,14 @@ public class ClayWarsDiscSpawner : MonoBehaviour
     private void ThrowBouncyObject(Rigidbody rb, bool isRight)
     {
         // Calculate the force vector
-        Vector3 force = rb.gameObject.transform.right * throwForce * 5f;
+        Vector3 force = rb.gameObject.transform.right * throwForce;
 
         if (isRight) force.x *= -1;
 
+        rb.gameObject.GetComponent<BouncyClaySideMovement>().SetDirection(isRight);
+
         // Apply the force to the Rigidbody
-        rb.AddForce(force, ForceMode.Impulse);
+        //rb.AddForce(force, ForceMode.Impulse);
     }
 
     public void NewRound()
