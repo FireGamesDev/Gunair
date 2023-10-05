@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ccbbc747b768d9a458392491bc54a810, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d62623df63d57894a935bcdf978af2f6, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -134,6 +134,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -2551,6 +2555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -3453,6 +3461,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -4635,6 +4647,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5602,6 +5618,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -6793,6 +6813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7791,6 +7815,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -9727,6 +9755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10201,6 +10233,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -11484,6 +11520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -11872,6 +11912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12198,6 +12242,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -12724,6 +12772,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -15285,6 +15337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16128,6 +16184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16746,6 +16806,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -18413,6 +18477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18868,6 +18936,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 912154252}
     m_Modifications:
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -19434,6 +19506,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 912154252}
     m_Modifications:
+    - target: {fileID: 1670278198964608, guid: 3c544eee478f9ca47b7a7e2645103261, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4724850145814070, guid: 3c544eee478f9ca47b7a7e2645103261, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -20914,6 +20990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -22331,6 +22411,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -24481,6 +24565,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 912154252}
     m_Modifications:
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -24546,6 +24634,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -24744,6 +24836,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -25104,6 +25200,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -26158,6 +26258,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -28429,6 +28533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -28742,6 +28850,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -29522,6 +29634,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -29711,6 +29827,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -31108,6 +31228,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -34502,6 +34626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -35003,6 +35131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -35060,6 +35192,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -35357,6 +35493,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -36094,6 +36234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -36395,6 +36539,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -37336,6 +37484,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 912154252}
     m_Modifications:
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -37966,6 +38118,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -38640,6 +38796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -38723,7 +38883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5c753bc78f4f943a4a5e9b878f06b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disc: {fileID: 209532033184129579, guid: 6e069b0bbff0dbe4da901a27748007af, type: 3}
+  disc: {fileID: 209532033184129579, guid: f0386a91684e7404880ac19b9a40bdf3, type: 3}
   camHelper: {fileID: 7957960252639847788, guid: abb35ed537bea9746987f9c7e22a75a8, type: 3}
   fromLeftIconUI: {fileID: 243660353}
   fromRightIconUI: {fileID: 1584142947}
@@ -42890,6 +43050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -43131,6 +43295,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -47532,6 +47700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -48132,7 +48304,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276274265}
-  m_LocalRotation: {x: 0.016969733, y: -0.122207396, z: 0.0020897987, w: 0.9923573}
+  m_LocalRotation: {x: 0.01696974, y: -0.122207396, z: 0.0020897996, w: 0.9923573}
   m_LocalPosition: {x: -43.9, y: -3.171, z: 14.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48191,6 +48363,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -48831,6 +49007,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -49624,6 +49804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -49801,6 +49985,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -52507,6 +52695,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -56532,6 +56724,82 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 912154252}
     m_Modifications:
+    - target: {fileID: 1007020653444764, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015271280581212, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022390802796200, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026883825821188, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040636492101418, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1078516694831808, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1193519587184238, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1324045440913210, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400146404861770, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426970020567346, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1439356616113210, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1442542791641692, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520931703748784, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570634034835706, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647496992980626, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667749001025568, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1715588911413812, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1735412777353616, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940555958607492, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4431005849754184, guid: 13965946c7fbbc64ebf335e90fc5bafe, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -57712,6 +57980,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1670278198964608, guid: 3c544eee478f9ca47b7a7e2645103261, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4724850145814070, guid: 3c544eee478f9ca47b7a7e2645103261, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -58558,6 +58830,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -61953,6 +62229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -62614,6 +62894,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -63825,6 +64109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -64365,6 +64653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -64430,6 +64722,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -65570,6 +65866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -66474,6 +66774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -66655,6 +66959,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -67817,6 +68125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -68033,6 +68345,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -68331,6 +68647,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -69412,6 +69732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -69635,6 +69959,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -70756,6 +71084,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -70926,6 +71258,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -71620,6 +71956,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -73197,6 +73537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -73317,6 +73661,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -73431,7 +73779,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885334249}
-  m_LocalRotation: {x: 0.016969733, y: -0.122207396, z: 0.0020897987, w: 0.9923573}
+  m_LocalRotation: {x: 0.01696974, y: -0.122207396, z: 0.0020897996, w: 0.9923573}
   m_LocalPosition: {x: -56.75, y: 4.18, z: 5.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -73709,6 +74057,10 @@ PrefabInstance:
     - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_06 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1829520066912572, guid: 6fc86bcd020904044a931af912652050, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4563883862551582, guid: 6fc86bcd020904044a931af912652050, type: 3}
       propertyPath: m_RootOrder
@@ -74654,6 +75006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -74719,6 +75075,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -75046,6 +75406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -75273,6 +75637,10 @@ PrefabInstance:
     - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
@@ -75793,6 +76161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -76284,6 +76656,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -76546,6 +76922,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -77510,6 +77890,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder
@@ -80437,6 +80821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_05 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1991875029331910, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4276427947459946, guid: 0f5afd0a565c5644fb77d4600ba5d44a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -81907,6 +82295,10 @@ PrefabInstance:
     - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_Name
       value: SM_Env_Sand_Ground_02 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1194512102497620, guid: ffa07e3583b855246941e709137f6eea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4240161815777350, guid: ffa07e3583b855246941e709137f6eea, type: 3}
       propertyPath: m_RootOrder

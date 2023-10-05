@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1786087771151315045}
   - component: {fileID: 209532033184129578}
   - component: {fileID: 5826401312213684652}
-  - component: {fileID: 8047358565468947498}
   m_Layer: 0
   m_Name: ClayBouncy
   m_TagString: Untagged
@@ -121,7 +120,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209532033184129579}
   serializedVersion: 4
-  m_Mass: 0.85
+  m_Mass: 0.2
   m_Drag: 0.2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -170,7 +169,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209532033184129579}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 059c9a7f8c8474849a30dc96855ea214, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -180,25 +179,11 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &8047358565468947498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209532033184129579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 587903d96029e1441833ed15517a710b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diskRigidbody: {fileID: 1786087771151315045}
-  bounceForce: 10
 --- !u!1 &681679645348267224
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +223,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681679645348267224}
-  m_Material: {fileID: 13400000, guid: 059c9a7f8c8474849a30dc96855ea214, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -246,7 +231,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5

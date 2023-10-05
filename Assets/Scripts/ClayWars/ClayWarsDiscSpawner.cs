@@ -6,6 +6,7 @@ using UnityEngine;
 public class ClayWarsDiscSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject disc;
+    [SerializeField] private bool isBouncy = false;
     [SerializeField] private GameObject camHelper;
     [SerializeField] private GameObject fromLeftIconUI;
     [SerializeField] private GameObject fromRightIconUI;
@@ -107,14 +108,13 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         currentDiscCount++;
 
-        bool isBouncy = true;
-
         if (toLeft)
         {
             var spawnpos = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)];
             var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
             if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
             if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), false);
+            else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), false);
 
             Vector3 spawnpoint = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position;
             StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
@@ -127,6 +127,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
             if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
             if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), true);
+            else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), true);
 
             Vector3 spawnpoint = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position;
             StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
@@ -156,6 +157,17 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         if (isRight) force.x *= -1;
 
         force.y = curve;
+
+        // Apply the force to the Rigidbody
+        rb.AddForce(force, ForceMode.Impulse);
+    }
+    
+    private void ThrowBouncyObject(Rigidbody rb, bool isRight)
+    {
+        // Calculate the force vector
+        Vector3 force = rb.gameObject.transform.right * throwForce * 5f;
+
+        if (isRight) force.x *= -1;
 
         // Apply the force to the Rigidbody
         rb.AddForce(force, ForceMode.Impulse);
