@@ -14,26 +14,12 @@ public class DynamicCamera : MonoBehaviour
 
     [SerializeField] private float rotationSpeed = 5.0f;
     [SerializeField] private float transitionDuration = 2.0f;
-    [SerializeField] private float targetTransitionDuration = 1.5f;
 
     private bool transitioningToMiddle = false;
-    private bool isTransitioning = true;
-    private bool transitioningToTargetFinished = false;
 
     private void Awake()
     {
         Instance = this;
-    }
-
-    private void FixedUpdate()
-    {
-        if (currentTarget != null)
-        {
-            if (!isTransitioning && transitioningToTargetFinished)
-            {
-                TrackObject();
-            }
-        }
     }
 
     private void Update()
@@ -44,19 +30,11 @@ public class DynamicCamera : MonoBehaviour
             {
                 TransitionToMiddle();
                 transitioningToMiddle = true;
-                isTransitioning = false;
-                transitioningToTargetFinished = false;
             }
         }
         else
         {
-            if (!isTransitioning)
-            {
-                isTransitioning = true;
-                transitioningToTargetFinished = false;
-                StartCoroutine(TransitionToTarget());
-            }
-            else 
+            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, Quaternion.LookRotation(currentTarget.position - cam.transform.position), rotationSpeed * Time.deltaTime);
 
             transitioningToMiddle = false;
         }
@@ -74,26 +52,5 @@ public class DynamicCamera : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(target.position - cam.transform.position);
             cam.transform.DORotateQuaternion(targetRotation, duration);
         }
-    }
-
-    private IEnumerator TransitionToTarget()
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < targetTransitionDuration)
-        {
-            cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, Quaternion.LookRotation(currentTarget.position - cam.transform.position), rotationSpeed * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        isTransitioning = false;
-        transitioningToTargetFinished = true;
-    }
-
-    private void TrackObject()
-    {
-        Quaternion targetRotation = Quaternion.LookRotation(currentTarget.position - cam.transform.position);
-        cam.transform.rotation = Quaternion.Slerp(cam.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 }

@@ -20,7 +20,6 @@ public class FollowMouse : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
         Cursor.visible = false;
 
         pos = Input.mousePosition;

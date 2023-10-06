@@ -1077,6 +1077,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 639965225}
     m_Modifications:
+    - target: {fileID: 302611424844946985, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188808039802996357, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188808039802996357, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4142631924478321718, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
       propertyPath: m_Name
       value: Cursor

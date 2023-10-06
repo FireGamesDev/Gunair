@@ -3959,11 +3959,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4245ebed23e46e64db5277e536696659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 315048334}
+  cam: {fileID: 682063426}
   middle: {fileID: 143206894}
   rotationSpeed: 50
   transitionDuration: 2
-  targetTransitionDuration: 1.5
 --- !u!1 &319309394
 GameObject:
   m_ObjectHideFlags: 0
@@ -6238,7 +6237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 518347628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 2.53, z: 4.353897}
+  m_LocalPosition: {x: -2.8, y: 4.7, z: 4.353897}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11017,7 +11016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 909954806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.22, y: 6.07, z: -3.7918763}
+  m_LocalPosition: {x: 5.22, y: 8, z: -3.7918763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21371,7 +21370,7 @@ MonoBehaviour:
   quickShotText: {fileID: 1285056824}
   quickShotGo: {fileID: 1980001192}
   backgroundImage: {fileID: 1980001194}
-  maxScoreTime: 8
+  maxScoreTime: 8.5
   maxScore: 24
 --- !u!4 &1851001616 stripped
 Transform:

@@ -111,8 +111,15 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         if (toLeft)
         {
             var spawnpos = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)];
-            var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
-            if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
+            GameObject discGo;
+            if (!isBouncy)
+            {
+                discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
+            }
+            else
+            {
+                discGo = Instantiate(disc, spawnpos.position, Quaternion.Euler(90, 0, 0));
+            }
             if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), false);
             else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), false);
 
@@ -124,8 +131,15 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         else
         {
             var spawnpos = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)];
-            var discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
-            if (isBouncy) discGo.transform.rotation = Quaternion.Euler(90, 0, 0);
+            GameObject discGo;
+            if (!isBouncy)
+            {
+                discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
+            }
+            else
+            {
+                discGo = Instantiate(disc, spawnpos.position, Quaternion.Euler(90, 0, 0));
+            }
             if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), true);
             else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), true);
 

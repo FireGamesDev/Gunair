@@ -73791,7 +73791,6 @@ MonoBehaviour:
   middle: {fileID: 1459552019}
   rotationSpeed: 50
   transitionDuration: 2
-  targetTransitionDuration: 1.5
 --- !u!1001 &1888963253
 PrefabInstance:
   m_ObjectHideFlags: 0

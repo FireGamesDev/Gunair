@@ -11,9 +11,14 @@ public class DestroyDiscIfStopped : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 0.3f, targetLayer))
+        if (Physics.Raycast(ray, out hit, 0.8f, targetLayer))
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }
