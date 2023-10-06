@@ -4385,7 +4385,7 @@ MonoBehaviour:
   quickShotText: {fileID: 906811059}
   quickShotGo: {fileID: 262246334}
   backgroundImage: {fileID: 262246336}
-  maxScoreTime: 6
+  maxScoreTime: 4.8
   maxScore: 24
 --- !u!1001 &122526162
 PrefabInstance:
@@ -38884,6 +38884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disc: {fileID: 209532033184129579, guid: f0386a91684e7404880ac19b9a40bdf3, type: 3}
+  isBouncy: 0
   camHelper: {fileID: 7957960252639847788, guid: abb35ed537bea9746987f9c7e22a75a8, type: 3}
   fromLeftIconUI: {fileID: 243660353}
   fromRightIconUI: {fileID: 1584142947}
@@ -48304,7 +48305,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276274265}
-  m_LocalRotation: {x: 0.01696974, y: -0.122207396, z: 0.0020897996, w: 0.9923573}
+  m_LocalRotation: {x: 0.01696972, y: -0.12220743, z: 0.0020897978, w: 0.9923573}
   m_LocalPosition: {x: -43.9, y: -3.171, z: 14.396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -73779,7 +73780,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885334249}
-  m_LocalRotation: {x: 0.01696974, y: -0.122207396, z: 0.0020897996, w: 0.9923573}
+  m_LocalRotation: {x: 0.01696972, y: -0.12220743, z: 0.0020897978, w: 0.9923573}
   m_LocalPosition: {x: -56.75, y: 4.18, z: 5.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
