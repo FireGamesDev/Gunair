@@ -7,14 +7,6 @@ using DG.Tweening;
 public class RotationLimiter : MonoBehaviour
 {
     public GameObject followRotation;
-    public GameObject middle;
-
-    public static RotationLimiter Instance;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     private void Update()
     {

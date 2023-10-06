@@ -138,12 +138,14 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     private IEnumerator DelayAndThenTransitionCamera(GameObject discGo, Vector3 spawnpos)
     {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.1f);
 
-        var camTargetHelper = Instantiate(camHelper, spawnpos, Quaternion.identity);
-        camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
+        //var camTargetHelper = Instantiate(camHelper, spawnpos, Quaternion.identity);
+        //camTargetHelper.GetComponent<CamTargetHelper>().SetHelper(discGo.transform);
 
-        cam.m_LookAt = camTargetHelper.transform;
+        //cam.m_LookAt = camTargetHelper.transform;
+
+        DynamicCamera.Instance.currentTarget = discGo.transform;
     }
 
     private void ThrowObject(Rigidbody rb, bool isRight)
