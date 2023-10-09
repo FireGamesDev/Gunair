@@ -30,6 +30,11 @@ public class ClayWarsGameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void UpdateScore(int scoresToAdd)

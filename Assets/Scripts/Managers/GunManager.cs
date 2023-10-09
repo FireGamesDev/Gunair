@@ -33,7 +33,10 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Transform bulletUIParent;
     [SerializeField] private GameObject bulletIconPrefab;
     [SerializeField] private GameObject infiniteBullet;
-    [SerializeField] private List<GameObject> clayWarsBullets = new List<GameObject>();
+    [SerializeField] private List<GameObject> clayWarsBullets = new List<GameObject>(); 
+    [SerializeField] private bool isClayWars = false;
+
+    private bool isReloadedInClayWars = false;
 
     [Header("Reloading")]
     [SerializeField] private float reloadTime = 3f;
@@ -77,15 +80,36 @@ public class GunManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (canShoot && currentBulletCount > 0)
+            if (!isClayWars)
             {
-                canShoot = false;
-                Shoot();
+                if (canShoot && currentBulletCount > 0)
+                {
+                    canShoot = false;
+                    Shoot();
+                }
+                else if (currentBulletCount <= 0)
+                {
+                    Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(outOfAmmoSFX);
+                }
             }
-            else if (currentBulletCount <= 0)
+            else
             {
-                Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(outOfAmmoSFX);
+                if (canShoot && currentBulletCount > 1)
+                {
+                    canShoot = false;
+                    Shoot();
+                } else if (isReloadedInClayWars)
+                {
+                    canShoot = false;
+                    Shoot();
+                    isReloadedInClayWars = false;
+                }
+                else if (currentBulletCount <= 0)
+                {
+                    Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFX(outOfAmmoSFX);
+                }
             }
+            
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -96,8 +120,27 @@ public class GunManager : MonoBehaviour
             {
                 if (!noReload)
                 {
-                    reloading = true;
-                    StartCoroutine(Reload());
+                    if (isClayWars)
+                    {
+                        if (currentBulletCount == 1)
+                        {
+                            isReloadedInClayWars = true;
+                        }
+                        else
+                        {
+                            reloading = true;
+                            StartCoroutine(Reload());
+
+                            isReloadedInClayWars = false;
+                        }
+                    }
+                    else
+                    {
+                        reloading = true;
+                        StartCoroutine(Reload());
+
+                        isReloadedInClayWars = false;
+                    }
                 }
                 else
                 {
@@ -172,7 +215,7 @@ public class GunManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(raycastDirection);
 
         //actual shooting with raycast
-        if (Physics.Raycast(ray, out hit, 100f) && Vector3.Distance(transform.position, hit.point) < 200f)
+        if (Physics.Raycast(ray, out hit, 10000f)) //&& Vector3.Distance(transform.position, hit.point) < 200f
         {
             if (hitEffect != null)
             {
@@ -190,19 +233,21 @@ public class GunManager : MonoBehaviour
                 cursor.SetTrigger("Hit");
             }
 
-            /*
-            // Creating the bullet only visual
-            Vector3 bulletDirection = (hit.point - transform.position).normalized;
-            Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection);
+            if (isClayWars)
+            {
+                // Creating the bullet only visual
+                Vector3 bulletDirection = (hit.point - transform.position).normalized;
+                Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection);
 
-            // Apply 90-degree offset on the y-axis
-            Quaternion yRotationOffset = Quaternion.Euler(0f, 90f, 0f);
-            bulletRotation *= yRotationOffset;
+                // Apply 90-degree offset on the y-axis
+                Quaternion yRotationOffset = Quaternion.Euler(0f, 90f, 0f);
+                bulletRotation *= yRotationOffset;
 
-            var pel = Instantiate(bulletPrefab, reticle.transform.position, bulletRotation);
-            pel.GetComponent<Rigidbody>().AddForce(bulletDirection * shootForce);
-            Destroy(pel, 2);
-            */
+                var pel = Instantiate(bulletPrefab, reticle.transform.position + new Vector3(0, 0, 0), bulletRotation);
+                pel.GetComponent<Rigidbody>().AddForce(bulletDirection * shootForce);
+                Destroy(pel, 2);
+            }
+            
         }
     }
 

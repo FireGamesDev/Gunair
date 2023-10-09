@@ -13,11 +13,13 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
     [SerializeField] private GameObject scorePopup;
     [SerializeField] private Animator anim;
 
+    [SerializeField] private bool isFish = false;
+
     [Header("SFX")]
     [SerializeField] private GameObject sfxPrefab;
     [SerializeField] private AudioClip hitSFX;
 
-    private Vector3 target;
+    [HideInInspector] public Vector3 target;
 
     private bool isDead = false;
     private bool isStartFalling = false;
@@ -29,7 +31,11 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
 
     private void Start()
     {
-        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        if (GameObject.Find("ScoreManager") != null)
+        {
+            scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        }
+        
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -124,7 +130,14 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
         popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
         Destroy(popup, 2);
 
-        scoreManager.AddScore(score);
+        if (scoreManager != null)
+        {
+            scoreManager.AddScore(score);
+        }  
+        else
+        {
+            ClayWarsGameManager.Instance.UpdateScore(score);
+        }
 
         StartCoroutine(Die());
     }
@@ -141,10 +154,13 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
 
     private IEnumerator Timeup()
     {
-        speed *= 2;
-        target = transform.position + new Vector3(0, 50, 0);
+        if (!isFish)
+        {
+            speed *= 2;
+            target = transform.position + new Vector3(0, 50, 0);
 
-        yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3);
+        }
 
         Destroy(gameObject);
     }

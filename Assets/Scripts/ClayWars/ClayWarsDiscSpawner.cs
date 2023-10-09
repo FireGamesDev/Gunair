@@ -92,7 +92,17 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(3.5f);
 
-            SpawnDiscAndLaunch(toLeft);
+            if (Random.value < 0.5f)
+            {
+                SpawnDiscAndLaunch(toLeft);
+            }
+            else
+            {
+                //spawnd double with delay
+                SpawnDiscAndLaunch(toLeft);
+                yield return new WaitForSeconds(1f);
+                SpawnDiscAndLaunch(toLeft);
+            }
 
             yield return new WaitForSeconds(0.3f);
 

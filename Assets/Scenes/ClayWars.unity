@@ -2178,8 +2178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a4b25a1ff1e434dba0fb0d8deeddb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRotationAngles: {x: 0, y: -90, z: 0}
-  maxRotationAngles: {x: 0, y: -60, z: 0}
   followRotation: {fileID: 1032310775}
 --- !u!1 &645289778
 GameObject:
@@ -6548,6 +6546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disc: {fileID: 209532033184129579, guid: f0386a91684e7404880ac19b9a40bdf3, type: 3}
+  isBouncy: 0
+  camHelper: {fileID: 0}
   fromLeftIconUI: {fileID: 954582839}
   fromRightIconUI: {fileID: 2088074223}
   cam: {fileID: 617569605}
@@ -6567,6 +6567,7 @@ MonoBehaviour:
   curveAmount: 2
   discNumberForTheRoundMin: 2
   discNumberForTheRoundMax: 2
+  currentDiscCount: 0
 --- !u!1 &1344384161
 GameObject:
   m_ObjectHideFlags: 0
@@ -9708,6 +9709,10 @@ PrefabInstance:
     - target: {fileID: 4142631924478321718, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
       propertyPath: m_Name
       value: Cursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4142631924478321718, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4142631924478321719, guid: 037b46d768b1c6c4e95605dea71dec2f, type: 3}
       propertyPath: m_Pivot.x
