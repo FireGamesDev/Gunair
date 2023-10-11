@@ -108,7 +108,7 @@ MonoBehaviour:
   anim: {fileID: 6931251761911923707}
   isFish: 1
   sfxPrefab: {fileID: 358259827338237818, guid: 73aa98402b1f1614db7c66ff8fba6a9b, type: 3}
-  hitSFX: {fileID: 8300000, guid: edd19845a3ae0db4d8266c6e91b71de6, type: 3}
+  hitSFX: {fileID: 8300000, guid: 42da8e9622fb3624b922f363f8287552, type: 3}
   target: {x: 0, y: 0, z: 0}
 --- !u!65 &2027689865549633785
 BoxCollider:

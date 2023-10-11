@@ -35,6 +35,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private GameObject infiniteBullet;
     [SerializeField] private List<GameObject> clayWarsBullets = new List<GameObject>(); 
     [SerializeField] private bool isClayWars = false;
+    [SerializeField] private GameObject shootPoint;
 
     private bool isReloadedInClayWars = false;
 
@@ -60,6 +61,10 @@ public class GunManager : MonoBehaviour
     private bool reloading = false;
 
     private int currentBulletCount = 0;
+
+    private List<ITarget> targets = new List<ITarget>();
+
+    private Coroutine coroutine;
 
     private void Start()
     {
@@ -161,11 +166,12 @@ public class GunManager : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < pelletCount; i++)
+            for (int i = 0; i < pelletCount - 1; i++)
             {
                 Vector3 spreadPosition = GenerateSpreadPosition(Input.mousePosition, spreadRadius);
-                ShootABullet(spreadPosition);
+                ShootABullet(spreadPosition);               
             }
+            ShootABullet(Input.mousePosition);
         }
 
         var chasing = Instantiate(chasingPrefab, barrel.transform.position, transform.rotation);
@@ -228,11 +234,22 @@ public class GunManager : MonoBehaviour
 
             if (target != null)
             {
-                target.Hit(hit);
+                if (!targets.Contains(target))
+                {
+                    targets.Add(target);
+                    target.Hit(hit);
 
-                cursor.SetTrigger("Hit");
+                    cursor.SetTrigger("Hit");                    
+                }  
             }
 
+            if (isClayWars)
+            {
+                //if (coroutine != null) { StopCoroutine(coroutine); }
+                //coroutine = StartCoroutine(EnableShootPoint());
+            }
+
+            /*
             if (isClayWars)
             {
                 // Creating the bullet only visual
@@ -247,8 +264,15 @@ public class GunManager : MonoBehaviour
                 pel.GetComponent<Rigidbody>().AddForce(bulletDirection * shootForce);
                 Destroy(pel, 2);
             }
-            
+            */
         }
+    }
+
+    private IEnumerator EnableShootPoint()
+    {
+        shootPoint.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        shootPoint.SetActive(false);
     }
 
     private IEnumerator Muzzle()
@@ -378,6 +402,8 @@ public class GunManager : MonoBehaviour
         {
             Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFXWithVolume(shotgunReloadEnd, 0.3f);
         }
+
+        targets = new List<ITarget>(); //reset list
     }
 
     private void DestroyAmmoDisplay()
