@@ -232,16 +232,29 @@ public class GunManager : MonoBehaviour
 
             ITarget target = hit.transform.GetComponent<ITarget>();
 
-            if (target != null)
+            if (isClayWars)
             {
-                if (!targets.Contains(target))
+                if (target != null)
                 {
-                    targets.Add(target);
+                    if (!targets.Contains(target))
+                    {
+                        targets.Add(target);
+                        target.Hit(hit);
+
+                        cursor.SetTrigger("Hit");
+                    }
+                }
+            }
+            else
+            {
+                if (target != null)
+                {
                     target.Hit(hit);
 
-                    cursor.SetTrigger("Hit");                    
-                }  
+                    cursor.SetTrigger("Hit");
+                }
             }
+
 
             if (isClayWars)
             {
