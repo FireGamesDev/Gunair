@@ -161,7 +161,15 @@ public class GunManager : MonoBehaviour
                         else
                         {
                             reloading = true;
-                            StartCoroutine(Reload());
+
+                            if (!PhotonNetwork.InRoom)
+                            {
+                                ReloadRPC();
+                            }
+                            else
+                            {
+                                _pv.RPC(nameof(ReloadRPC), RpcTarget.All);
+                            }
 
                             isReloadedInClayWars = false;
                         }
@@ -169,7 +177,15 @@ public class GunManager : MonoBehaviour
                     else
                     {
                         reloading = true;
-                        StartCoroutine(Reload());
+
+                        if (!PhotonNetwork.InRoom)
+                        {
+                            ReloadRPC();
+                        }
+                        else
+                        {
+                            _pv.RPC(nameof(ReloadRPC), RpcTarget.All);
+                        }
 
                         isReloadedInClayWars = false;
                     }
@@ -392,6 +408,12 @@ public class GunManager : MonoBehaviour
         {
             infiniteBullet.SetActive(true);
         }
+    }
+
+    [PunRPC]
+    private void ReloadRPC()
+    {
+        StartCoroutine(Reload());
     }
 
     private IEnumerator Reload()

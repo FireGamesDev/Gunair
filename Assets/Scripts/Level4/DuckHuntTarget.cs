@@ -2,6 +2,7 @@ using Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class DuckHuntTarget : MonoBehaviour, ITarget
 {
@@ -18,6 +19,9 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
     [Header("SFX")]
     [SerializeField] private GameObject sfxPrefab;
     [SerializeField] private AudioClip hitSFX;
+
+    [Header("Multiplayer")]
+    [SerializeField] private PhotonView _pv;
 
     [HideInInspector] public Vector3 target;
 
@@ -41,6 +45,11 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
 
     private void Update()
     {
+        if (PhotonNetwork.InRoom)
+        {
+            if (!_pv.IsMine) return;
+        }
+
         if (!isDead)
         {
             if (Vector3.Distance(transform.position, target) > 0)

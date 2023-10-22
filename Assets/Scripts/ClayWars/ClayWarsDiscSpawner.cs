@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ClayWarsDiscSpawner : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
     [SerializeField] private int discNumberForTheRoundMin = 3;
     [SerializeField] private int discNumberForTheRoundMax = 8;
+
+    [Header("Multiplayer")]
+    [SerializeField] private PhotonView _pv;
 
     public int discNumberForTheRound { get; private set; } = 4;
 
@@ -121,46 +125,51 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         if (toLeft)
         {
             var spawnpos = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)];
-            GameObject discGo;
-            if (!isBouncy)
+
+            if (PhotonNetwork.InRoom)
             {
-                discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
+                _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft);
             }
             else
             {
-                discGo = Instantiate(disc, spawnpos.position, Quaternion.Euler(90, 0, 0));
+                SpawnDiscRPC(spawnpos.position, toLeft);
             }
-            if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), false);
-            else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), false);
-
-            Vector3 spawnpoint = _leftSpawnpoints[Random.Range(0, _leftSpawnpoints.Count)].position;
-            StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
-
-            Destroy(discGo, lifeTime);
         }
         else
         {
             var spawnpos = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)];
-            GameObject discGo;
-            if (!isBouncy)
+
+            if (PhotonNetwork.InRoom)
             {
-                discGo = Instantiate(disc, spawnpos.position, Quaternion.identity);
+                _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft);
             }
             else
             {
-                discGo = Instantiate(disc, spawnpos.position, Quaternion.Euler(90, 0, 0));
+                SpawnDiscRPC(spawnpos.position, toLeft);
             }
-            if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), true);
-            else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), true);
-
-            Vector3 spawnpoint = _rightSpawnpoints[Random.Range(0, _rightSpawnpoints.Count)].position;
-            StartCoroutine(DelayAndThenTransitionCamera(discGo, spawnpoint));
-
-            Destroy(discGo, lifeTime);
         }
     }
 
-    private IEnumerator DelayAndThenTransitionCamera(GameObject discGo, Vector3 spawnpos)
+    private void SpawnDiscRPC(Vector3 spawnpos, bool toLeft)
+    {
+        GameObject discGo;
+        if (!isBouncy)
+        {
+            discGo = Instantiate(disc, spawnpos, Quaternion.identity);
+        }
+        else
+        {
+            discGo = Instantiate(disc, spawnpos, Quaternion.Euler(90, 0, 0));
+        }
+        if (!isBouncy) ThrowObject(discGo.GetComponent<Rigidbody>(), !toLeft);
+        else ThrowBouncyObject(discGo.GetComponent<Rigidbody>(), !toLeft);
+
+        StartCoroutine(DelayAndThenTransitionCamera(discGo));
+
+        Destroy(discGo, lifeTime);
+    }
+
+    private IEnumerator DelayAndThenTransitionCamera(GameObject discGo)
     {
         yield return new WaitForSeconds(1.1f);
 

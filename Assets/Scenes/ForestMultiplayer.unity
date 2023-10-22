@@ -2857,6 +2857,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179219339}
   - component: {fileID: 179219338}
+  - component: {fileID: 179219340}
   m_Layer: 5
   m_Name: ClayWarsScoreCounter
   m_TagString: Untagged
@@ -2882,7 +2883,7 @@ MonoBehaviour:
   parent: {fileID: 1500435481}
   endRowParent: {fileID: 1495862374}
   accuracyText: {fileID: 1232617430}
-  _pv: {fileID: 0}
+  _pv: {fileID: 179219340}
 --- !u!224 &179219339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2904,6 +2905,28 @@ RectTransform:
   m_AnchoredPosition: {x: -125, y: 414}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &179219340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179219337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &181844770
 PrefabInstance:
   m_ObjectHideFlags: 0

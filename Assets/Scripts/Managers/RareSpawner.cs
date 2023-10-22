@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RareSpawner : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class RareSpawner : MonoBehaviour
     [SerializeField] private bool isFish = false;
     [SerializeField] private GameObject target;
 
+    [SerializeField] private PhotonView _pv;
+
     private void Start()
     {
         InvokeRepeating(nameof(Spawn), 0f, 10f);
@@ -21,12 +24,24 @@ public class RareSpawner : MonoBehaviour
     {
         if (Random.value <= chance)
         {
-            var go = Instantiate(objectToSpawnRarely, transform);
-            if (isFish)
+            if (PhotonNetwork.InRoom)
             {
-                go.GetComponent<DuckHuntTarget>().target = target.transform.position;
+                _pv.RPC(nameof(SpawnRPC), RpcTarget.All);
             }
-            
+            else
+            {
+                SpawnRPC();
+            }
+        }
+    }
+
+    [PunRPC]
+    private void SpawnRPC()
+    {
+        var go = Instantiate(objectToSpawnRarely, transform);
+        if (isFish)
+        {
+            go.GetComponent<DuckHuntTarget>().target = target.transform.position;
         }
     }
 }
