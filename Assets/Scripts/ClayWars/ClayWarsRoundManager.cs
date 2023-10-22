@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ClayWarsRoundManager : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class ClayWarsRoundManager : MonoBehaviour
 
     private void Start()
     {
+
+
         InitRoundCircles();
 
         if (ClayWarsGameManager.playerCount < 2)
@@ -102,7 +105,14 @@ public class ClayWarsRoundManager : MonoBehaviour
 
         if (currentRoundNumber >= rounds)
         {
-            ClayWarsGameManager.Instance.EndGame();
+            if (PhotonNetwork.InRoom)
+            {
+                MultiplayerGameManager.Instance.EndGame();
+            }
+            else{
+                ClayWarsGameManager.Instance.EndGame();
+            }
+            
 
             return;
         }

@@ -178,8 +178,7 @@ namespace FireGames.Managers
         private void LoadMultiplayerScene()
         {
             PhotonNetwork.IsMessageQueueRunning = false;
-            PhotonNetwork.LoadLevel("MultiplayerGame");
-            //PhotonNetwork.LoadLevel("BallMultiplayer");
+            PhotonNetwork.LoadLevel(PlayerPrefs.GetString("currentMap", "Desert") + "Multiplayer");
         }
 
         private void SpawnPlayer()

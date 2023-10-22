@@ -45,6 +45,11 @@ public class MenuManager : MonoBehaviour
         levelManager.gameObject.SetActive(true);
     }
 
+    public void Multiplayer()
+    {
+        SceneManager.LoadScene("Multiplayer");
+    }
+
     public void Quit()
     {
         Application.Quit();

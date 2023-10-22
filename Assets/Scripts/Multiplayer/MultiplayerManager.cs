@@ -12,7 +12,7 @@ namespace FireGames.Managers
     {
         [SerializeField] private GameObject _loadingScreen;
         [SerializeField] private GameObject _content;
-        [SerializeField] private GameObject _nicknameScreen;
+        //[SerializeField] private GameObject _nicknameScreen;
         [SerializeField] private GameObject _createButton;
         [SerializeField] private GameObject _joinButton;
         [SerializeField] private GameObject _privacyToggleX;
@@ -33,9 +33,9 @@ namespace FireGames.Managers
         {
             //PhotonNetwork.ConnectUsingSettings();
 
-            if (PlayerPrefs.GetString("username", "").Equals(""))
+            if (PlayerPrefs.GetString("Nickname", "").Equals(""))
             {
-                _nicknameScreen.SetActive(true);
+                //_nicknameScreen.SetActive(true);
             }
 
             DisconnectIfConnectedAtStart();
@@ -55,7 +55,7 @@ namespace FireGames.Managers
         {
             if (PhotonNetwork.IsConnected)
             {
-                //PhotonNetwork.Disconnect();
+                PhotonNetwork.Disconnect();
             }
             if (!PhotonNetwork.IsMessageQueueRunning)
             {
@@ -75,7 +75,7 @@ namespace FireGames.Managers
             _roomList.DisplayRooms(true);
 
             _loadingScreen.SetActive(false);
-            PhotonNetwork.NickName = PlayerPrefs.GetString("username", "Anonymus");
+            PhotonNetwork.NickName = PlayerPrefs.GetString("Nickname", "Anonymus");
         }
 
         public void CreateGame()
@@ -136,24 +136,6 @@ namespace FireGames.Managers
         private void JoinSpecialRoom()
         {
             PhotonNetwork.JoinRandomRoom(new ExitGames.Client.Photon.Hashtable(), (byte)maxPlayers);
-        }
-
-        public void QuickMatch1v1()
-        {
-            maxPlayers = 2;
-            JoinSpecialRoom();
-        }
-
-        public void QuickMatch2v2()
-        {
-            maxPlayers = 4;
-            JoinSpecialRoom();
-        }
-
-        public void QuickMatch3v3()
-        {
-            maxPlayers = 6;
-            JoinSpecialRoom();
         }
 
         public void SetRoomPrivacy(bool isPrivate)
@@ -232,6 +214,14 @@ namespace FireGames.Managers
         {
             yield return new WaitForSeconds(5f);
             _errorText.gameObject.SetActive(false);
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            if (!PhotonNetwork.IsConnected)
+            {
+                regionChanger.SetRegion();
+            }
         }
 
         public void Disconnect()

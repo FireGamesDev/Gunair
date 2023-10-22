@@ -12,10 +12,7 @@ public class RegionChanger : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (!PhotonNetwork.IsConnected)
-        {
-            PhotonNetwork.ConnectUsingSettings();
-        }
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public void ChangeRegion(int regionIndex)
