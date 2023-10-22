@@ -71,10 +71,21 @@ public class ClayWarsRoundManager : MonoBehaviour
 
             shotgun.ReloadShotgunOnNewRoundInstantly();
 
-            if (currentPlayerIndexInRound >= ClayWarsGameManager.playerCount)
+            if (PhotonNetwork.InRoom)
             {
-                currentPlayerIndexInRound = 0;
-                currentRoundNumber += 1;
+                if (currentPlayerIndexInRound >= ClayWarsGameManager.playerCount)
+                {
+                    currentPlayerIndexInRound = 0;
+                    currentRoundNumber += 1;
+                }
+            }
+            else
+            {
+                if (currentPlayerIndexInRound >= PhotonNetwork.CountOfPlayers)
+                {
+                    currentPlayerIndexInRound = 0;
+                    currentRoundNumber += 1;
+                }
             }
         }
 

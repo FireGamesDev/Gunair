@@ -75,7 +75,14 @@ public class CarnivalTarget : MonoBehaviour, ITarget
                 score += quickshotScore;
 
                 QuickShot.Instance.StopTimer();
-                ClayWarsGameManager.Instance.UpdateScore(score);
+                if (Photon.Pun.PhotonNetwork.InRoom)
+                {
+                    MultiplayerGameManager.Instance.UpdateScore(score);
+                }
+                else
+                {
+                    ClayWarsGameManager.Instance.UpdateScore(score);
+                }  
 
                 ClayWarsScoreCounter.Instance.TextFeedback(quickshotScore, contactPoint.point);
             }

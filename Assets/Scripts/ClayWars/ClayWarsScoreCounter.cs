@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Photon.Pun;
 
 public class ClayWarsScoreCounter : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class ClayWarsScoreCounter : MonoBehaviour
     public Transform parent;
     [SerializeField] private Transform endRowParent;
     [SerializeField] private TMPro.TMP_Text accuracyText;
+
+    [Header("Multiplayer")]
+    [SerializeField] private PhotonView _pv;
 
     private List<ScoreRow> scoreRows = new List<ScoreRow>();
 
@@ -118,17 +122,31 @@ public class ClayWarsScoreCounter : MonoBehaviour
 
         if (textFeedback != "")
         {
-            var popup = Instantiate(textPopup, pos, Quaternion.identity);
-            popup.transform.LookAt(Camera.main.transform);
-
-            Vector3 scale = popup.transform.localScale;
-            scale.x *= -1;
-            popup.transform.localScale = scale;
-
-            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = textFeedback;
-            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = feedbackColor;
-            Destroy(popup, 1);
+            if (PhotonNetwork.InRoom)
+            {
+                _pv.RPC(nameof(SpawnPopup), RpcTarget.All, pos, textFeedback, feedbackColor);
+            }
+            else
+            {
+                SpawnPopup(pos, textFeedback, feedbackColor);
+            }
         }
+    }
+
+    [PunRPC]
+    private void SpawnPopup(Vector3 pos, string textFeedback, Color feedbackColor)
+    {
+        GameObject popup;
+        popup = Instantiate(textPopup, pos, Quaternion.identity);
+        popup.transform.LookAt(Camera.main.transform);
+
+        Vector3 scale = popup.transform.localScale;
+        scale.x *= -1;
+        popup.transform.localScale = scale;
+
+        popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = textFeedback;
+        popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = feedbackColor;
+        Destroy(popup, 1);
     }
 
     public string GetPlayerWithHighestScore()

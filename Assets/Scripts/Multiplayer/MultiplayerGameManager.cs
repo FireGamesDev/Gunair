@@ -51,6 +51,20 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     public void UpdateScore(int scoresToAdd)
     {
+        if (PhotonNetwork.InRoom)
+        {
+            _pv.RPC(nameof(SynchScoresRPC), RpcTarget.All, scoresToAdd);
+        }
+        else
+        {
+            scoreCounter.UpdatePlayerScore(ClayWarsDiscSpawner.Instance.currentPlayerIndexToGiveScoreTo, scoresToAdd);
+        }
+            
+    }
+
+    [PunRPC]
+    private void SynchScoresRPC(int scoresToAdd)
+    {
         scoreCounter.UpdatePlayerScore(ClayWarsDiscSpawner.Instance.currentPlayerIndexToGiveScoreTo, scoresToAdd);
     }
 
@@ -59,13 +73,44 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < playerCount; i++)
         {
             int scoresToAdd = (int)scoreCounter.GetAccuracyOfPlayer(i);
-            scoreCounter.EndExtraScore(i, scoresToAdd);
+
+            if (PhotonNetwork.InRoom)
+            {
+                if (GetLocalPlayerIndex() == i)
+                {
+                    _pv.RPC(nameof(SnychExtraScores), RpcTarget.All, i, scoresToAdd);
+                }
+            }
+            else
+            {
+                scoreCounter.EndExtraScore(i, scoresToAdd);
+            }
+
             yield return new WaitForSeconds(3);
         }
 
         yield return new WaitForSeconds(1);
 
         DisplayWinner();
+    }
+
+    public static int GetLocalPlayerIndex()
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            if (PhotonNetwork.PlayerList[i].IsLocal)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    [PunRPC]
+    private void SnychExtraScores(int i, int scoresToAdd)
+    {
+        scoreCounter.EndExtraScore(i, scoresToAdd);
     }
 
     private void DisplayWinner()

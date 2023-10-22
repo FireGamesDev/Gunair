@@ -136,7 +136,15 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
         }  
         else
         {
-            ClayWarsGameManager.Instance.UpdateScore(score);
+            if (Photon.Pun.PhotonNetwork.InRoom)
+            {
+                MultiplayerGameManager.Instance.UpdateScore(score);
+            }
+            else
+            {
+                ClayWarsGameManager.Instance.UpdateScore(score);
+            }
+            
         }
 
         StartCoroutine(Die());

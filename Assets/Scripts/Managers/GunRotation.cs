@@ -1,4 +1,5 @@
 using UnityEngine;
+using Photon.Pun;
 
 public class GunRotation : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class GunRotation : MonoBehaviour
 
     private void Update()
     {
+        if (PhotonNetwork.InRoom)
+        {
+            if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+            {
+                return;
+            }
+        }
+
         Vector3 targetPosition = prevHitPos;
 
         RaycastHit hit;

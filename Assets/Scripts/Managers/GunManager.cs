@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class GunManager : MonoBehaviour
 {
@@ -57,6 +58,9 @@ public class GunManager : MonoBehaviour
     [SerializeField] private AudioClip shotgunReloadOne;
     [SerializeField] private AudioClip shotgunReloadEnd;
 
+    [Header("Multiplayer")]
+    [SerializeField] private PhotonView _pv;
+
     private bool canShoot = true;
     private bool reloading = false;
 
@@ -75,7 +79,15 @@ public class GunManager : MonoBehaviour
 
     private void Update()
     {
-        if(gameManager != null) if (gameManager.isEnded) return;
+        if (PhotonNetwork.InRoom)
+        {
+            if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+            {
+                return;
+            }
+        }
+
+        if (gameManager != null) if (gameManager.isEnded) return;
         if (reloading) return;
 
         CheckInput();
@@ -102,11 +114,26 @@ public class GunManager : MonoBehaviour
                 if (canShoot && currentBulletCount > 1)
                 {
                     canShoot = false;
-                    Shoot();
+                    if (!PhotonNetwork.InRoom)
+                    {
+                        Shoot();
+                    }
+                    else
+                    {
+                        _pv.RPC(nameof(Shoot), RpcTarget.All);
+                    }
+                    
                 } else if (isReloadedInClayWars)
                 {
                     canShoot = false;
-                    Shoot();
+                    if (!PhotonNetwork.InRoom)
+                    {
+                        Shoot();
+                    }
+                    else
+                    {
+                        _pv.RPC(nameof(Shoot), RpcTarget.All);
+                    }
                     isReloadedInClayWars = false;
                 }
                 else if (currentBulletCount <= 0)
