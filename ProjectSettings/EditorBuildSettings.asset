@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Desert.unity
     guid: b02577a54950ef949a2fcd9d37a1d40c
   - enabled: 1
+    path: Assets/Scenes/DesertMultiplayer.unity
+    guid: a00ea2e233bf68341b4c95d66f13d949
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: 969f5c34544a7184a964db6232a1b2c2
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 4e683e40bf91bd9478b878bf9fdefb14
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 48cca02abd7d6914e8f818282ca5a07b
   - enabled: 1
