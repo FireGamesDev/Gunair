@@ -45,6 +45,14 @@ public class ClayWarsRoundManager : MonoBehaviour
             if (ClayWarsGameManager.playerCount < 2)
             {
                 currentPlayerIndexInRound = 0;
+
+                if (PhotonNetwork.InRoom)
+                {
+                    if (shotgun.GetComponent<PhotonView>().IsMine)
+                    {
+                        shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+                    }
+                }
             }
 
             if (ClayWarsGameManager.playerCount > 1)
@@ -94,6 +102,12 @@ public class ClayWarsRoundManager : MonoBehaviour
                 if (currentPlayerIndexInRound >= PhotonNetwork.PlayerList.Length)
                 {
                     currentPlayerIndexInRound = 0;
+
+                    if (shotgun.GetComponent<PhotonView>().IsMine)
+                    {
+                        shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+                    }
+
                     currentRoundNumber += 1;
                 }
             }
@@ -104,7 +118,12 @@ public class ClayWarsRoundManager : MonoBehaviour
 
     public void NextRound()
     {
-        if (ClayWarsGameManager.playerCount > 1)
+        if (shotgun.GetComponent<PhotonView>().IsMine)
+        {
+            shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+        }
+
+        if (ClayWarsGameManager.playerCount > 1 || PhotonNetwork.PlayerList.Length > 1)
         {
             if (currentRoundNumber < rounds)
             {
@@ -156,21 +175,14 @@ public class ClayWarsRoundManager : MonoBehaviour
             {
                 roundDisplay.text = "LAST ROUND";
                 roundDisplay.color = Color.red;
-
-                if (PhotonNetwork.InRoom)
-                {
-                    shotgun.GetComponent<PhotonView>().TransferOwnership(currentPlayerIndexInRound);
-                }
             }
-            else roundDisplay.text = "ROUND " + (currentRoundNumber + 1).ToString();
+            else
+            {
+                roundDisplay.text = "ROUND " + (currentRoundNumber + 1).ToString();
+            }
             roundDisplay.DOFade(1, 1).OnComplete(() =>
             {
                 roundDisplay.DOFade(0, 1).SetDelay(1);
-
-                if (PhotonNetwork.InRoom)
-                {
-                    shotgun.GetComponent<PhotonView>().TransferOwnership(currentPlayerIndexInRound);
-                }
             });
         });
 

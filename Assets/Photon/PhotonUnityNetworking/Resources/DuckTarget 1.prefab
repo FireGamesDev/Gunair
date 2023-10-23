@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6931251761911923707}
   - component: {fileID: 3657921556049248832}
   - component: {fileID: 2576437319846718112}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DuckTarget 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

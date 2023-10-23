@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5826401312213684652}
   - component: {fileID: 3037878479587888213}
   - component: {fileID: 5424953609780050764}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClayBouncy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

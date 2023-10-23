@@ -62,7 +62,17 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             {
                 ClayWarsRoundManager.Instance.NextPlayer();
 
-                ClayWarsRoundManager.Instance.NextRound();
+                if (PhotonNetwork.InRoom)
+                {
+                    if (PhotonNetwork.IsMasterClient)
+                    {
+                        _pv.RPC(nameof(NextRoundRPC), RpcTarget.All);
+                    }
+                }
+                else
+                {
+                    NextRoundRPC();
+                }
 
                 int playerCount;
 
@@ -242,6 +252,12 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
         // Apply the force to the Rigidbody
         //rb.AddForce(force, ForceMode.Impulse);
+    }
+
+    [PunRPC]
+    private void NextRoundRPC()
+    {
+        ClayWarsRoundManager.Instance.NextRound();
     }
 
     public void NewRound()

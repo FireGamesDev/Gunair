@@ -20,7 +20,6 @@ public class GunRotation : MonoBehaviour
     {
         if (PhotonNetwork.InRoom)
         {
-            Debug.LogWarning(MultiplayerGameManager.GetLocalPlayerIndex() + " g: " + ClayWarsRoundManager.Instance.currentPlayerIndexInRound);
             if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
             {
                 return;

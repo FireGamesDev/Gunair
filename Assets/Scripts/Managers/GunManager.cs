@@ -60,6 +60,7 @@ public class GunManager : MonoBehaviour
 
     [Header("Multiplayer")]
     [SerializeField] private PhotonView _pv;
+    [SerializeField] private LayerMask targetLayer;
 
     private bool canShoot = true;
     private bool reloading = false;
@@ -81,7 +82,7 @@ public class GunManager : MonoBehaviour
     {
         if (PhotonNetwork.InRoom)
         {
-            if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+            if (!_pv.IsMine)
             {
                 return;
             }
@@ -264,8 +265,7 @@ public class GunManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(raycastDirection);
 
-        //actual shooting with raycast
-        if (Physics.Raycast(ray, out hit, 10000f)) //&& Vector3.Distance(transform.position, hit.point) < 200f
+        if (Physics.Raycast(ray, out hit, 1000f, targetLayer)) //&& Vector3.Distance(transform.position, hit.point) < 200f
         {
             if (hitEffect != null)
             {

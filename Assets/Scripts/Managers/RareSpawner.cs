@@ -30,7 +30,11 @@ public class RareSpawner : MonoBehaviour
             }
             else
             {
-                SpawnRPC();
+                var go = Instantiate(objectToSpawnRarely, transform);
+                if (isFish)
+                {
+                    go.GetComponent<DuckHuntTarget>().target = target.transform.position;
+                }
             }
         }
     }

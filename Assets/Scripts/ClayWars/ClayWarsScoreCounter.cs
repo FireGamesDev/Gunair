@@ -41,7 +41,18 @@ public class ClayWarsScoreCounter : MonoBehaviour
 
     private void InitPlayers()
     {
-        for (int i = 1; i <= ClayWarsGameManager.playerCount; i++)
+        int playerCount;
+
+        if (PhotonNetwork.InRoom)
+        {
+            playerCount = PhotonNetwork.PlayerList.Length;
+        }
+        else
+        {
+            playerCount = ClayWarsGameManager.playerCount;
+        }
+
+        for (int i = 1; i <= playerCount; i++)
         {
             ScoreRow row = Instantiate(prefab, parent).GetComponent<ScoreRow>();
             if (i == 1)

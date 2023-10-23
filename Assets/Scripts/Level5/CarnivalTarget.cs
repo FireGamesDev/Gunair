@@ -84,10 +84,12 @@ public class CarnivalTarget : MonoBehaviour, ITarget
                 else
                 {
                     ClayWarsGameManager.Instance.UpdateScore(score);
-                }  
+                }
 
                 ClayWarsScoreCounter.Instance.TextFeedback(quickshotScore, contactPoint.point);
             }
+
+            Destroy(gameObject);
 
             //score popup
             var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);

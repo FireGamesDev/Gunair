@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6937885973564387006}
   - component: {fileID: 5826401312213684652}
   - component: {fileID: 1946775465383496091}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
