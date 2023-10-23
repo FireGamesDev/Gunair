@@ -88,6 +88,17 @@ public class ClayWarsScoreCounter : MonoBehaviour
         }
 
         UpdateAccuracy(currentPlayerIndex);
+
+        if (PhotonNetwork.InRoom)
+        {
+            _pv.RPC(nameof(UpdatePlayerScoreRPC), RpcTarget.All, playerIndex, scoreRows[playerIndex].score);
+        }
+    }
+
+    [PunRPC]
+    private void UpdatePlayerScoreRPC(int playerIndex, int updatedScore)
+    {
+        scoreRows[playerIndex].UpdateScore(updatedScore);
     }
 
     public void EndExtraScore(int playerIndex, int scoresToAdd)

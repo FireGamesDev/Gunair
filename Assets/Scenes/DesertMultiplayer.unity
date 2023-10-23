@@ -1261,7 +1261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44432925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51333,7 +51333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1355426305
 Transform:
   m_ObjectHideFlags: 0
@@ -54264,6 +54264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1429057876}
   - component: {fileID: 1429057875}
+  - component: {fileID: 1429057877}
   m_Layer: 5
   m_Name: ClayWarsScoreCounter
   m_TagString: Untagged
@@ -54289,7 +54290,7 @@ MonoBehaviour:
   parent: {fileID: 1238410271}
   endRowParent: {fileID: 1688793994}
   accuracyText: {fileID: 958617016}
-  _pv: {fileID: 0}
+  _pv: {fileID: 1429057877}
 --- !u!224 &1429057876
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54311,6 +54312,28 @@ RectTransform:
   m_AnchoredPosition: {x: -125, y: 414}
   m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1429057877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429057874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1429329003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64887,7 +64910,7 @@ MonoBehaviour:
   roundDisplay: {fileID: 422307753}
   currentPlayerDisplay: {fileID: 1435978081}
   shotgun: {fileID: 1152457403}
-  rounds: 5
+  rounds: 4
   roundCirclePrefab: {fileID: 2224324022622401316, guid: 6a45391d1627fcc48a1f3034a2670578, type: 3}
   parent: {fileID: 1979766958}
 --- !u!4 &1678410381

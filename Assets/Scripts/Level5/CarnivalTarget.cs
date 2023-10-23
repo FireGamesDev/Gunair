@@ -60,7 +60,14 @@ public class CarnivalTarget : MonoBehaviour, ITarget
     {
         if (!isObstacle)
         {
-            print("hit");
+            if (PhotonNetwork.InRoom)
+            {
+                if (GetComponent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(gameObject);
+                }
+            }
+
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
 
             GameObject hitGo = Instantiate(hitPrefab, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
@@ -89,8 +96,6 @@ public class CarnivalTarget : MonoBehaviour, ITarget
                 ClayWarsScoreCounter.Instance.TextFeedback(quickshotScore, contactPoint.point);
             }
 
-            Destroy(gameObject);
-
             //score popup
             var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
             popup.transform.LookAt(Camera.main.transform);
@@ -101,23 +106,8 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
             Destroy(popup, 1);
 
-            print(PhotonNetwork.InRoom + " in room");
+            Destroy(gameObject);
 
-            if (PhotonNetwork.InRoom)
-            {
-                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
-                {
-                    //GetComponent<PhotonView>().RPC(nameof(DestroyDiscRPC), RpcTarget.All);
-                    PhotonNetwork.Destroy(gameObject);
-                }
-                PhotonNetwork.Destroy(gameObject);
-                Destroy(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            
         }
         else
         {
@@ -134,12 +124,6 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             if (scoreManager != null) scoreManager.RemoveScore(score);
         }
-    }
-
-    [PunRPC]
-    public void DestroyDiscRPC()
-    {
-        Destroy(gameObject);
     }
 
     private void OnDestroy()

@@ -17,7 +17,7 @@ public class ClayWarsRoundManager : MonoBehaviour
     [SerializeField] private GameObject roundCirclePrefab;
     [SerializeField] private Transform parent;
 
-    private int currentRoundNumber = -1;
+    public int currentRoundNumber { get; private set; } = -1;
     public int currentPlayerIndexInRound { get; private set; } = -1;
 
     public static ClayWarsRoundManager Instance;
@@ -29,8 +29,6 @@ public class ClayWarsRoundManager : MonoBehaviour
 
     private void Start()
     {
-
-
         InitRoundCircles();
 
         if (PhotonNetwork.InRoom)
@@ -70,7 +68,7 @@ public class ClayWarsRoundManager : MonoBehaviour
 
         NextPlayer();
 
-        NextRound();
+        NextRound(currentRoundNumber);
     }
 
     private void InitRoundCircles()
@@ -103,9 +101,12 @@ public class ClayWarsRoundManager : MonoBehaviour
                 {
                     currentPlayerIndexInRound = 0;
 
-                    if (shotgun.GetComponent<PhotonView>().IsMine)
+                    if (PhotonNetwork.InRoom)
                     {
-                        shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+                        if (shotgun.GetComponent<PhotonView>().IsMine)
+                        {
+                            shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+                        }
                     }
 
                     currentRoundNumber += 1;
@@ -116,12 +117,18 @@ public class ClayWarsRoundManager : MonoBehaviour
         ClayWarsScoreCounter.Instance.NextPlayer(currentPlayerIndexInRound);
     }
 
-    public void NextRound()
+    public void NextRound(int currentRound)
     {
-        if (shotgun.GetComponent<PhotonView>().IsMine)
+        if (PhotonNetwork.InRoom)
         {
-            shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+            if (shotgun.GetComponent<PhotonView>().IsMine)
+            {
+                shotgun.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.PlayerList[currentPlayerIndexInRound]);
+            }
         }
+        
+
+        currentRoundNumber = currentRound;
 
         if (ClayWarsGameManager.playerCount > 1 || PhotonNetwork.PlayerList.Length > 1)
         {

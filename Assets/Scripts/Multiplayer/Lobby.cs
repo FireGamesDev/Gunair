@@ -179,6 +179,7 @@ namespace FireGames.Managers
         {
             PhotonNetwork.IsMessageQueueRunning = false;
             ClayWarsGameManager.playerCount = PhotonNetwork.PlayerList.Length;
+            MultiplayerGameManager.playerCount = PhotonNetwork.PlayerList.Length;
             PhotonNetwork.LoadLevel(PlayerPrefs.GetString("currentMap", "Desert") + "Multiplayer");
         }
 

@@ -6740,7 +6740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &550438329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8799,7 +8799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &728069197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21084,7 +21084,7 @@ MonoBehaviour:
   roundDisplay: {fileID: 335267214}
   currentPlayerDisplay: {fileID: 44084129}
   shotgun: {fileID: 868971669}
-  rounds: 5
+  rounds: 4
   roundCirclePrefab: {fileID: 2224324022622401316, guid: 6a45391d1627fcc48a1f3034a2670578, type: 3}
   parent: {fileID: 1231153459}
 --- !u!4 &1798648041

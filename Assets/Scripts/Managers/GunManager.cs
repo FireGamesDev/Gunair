@@ -60,7 +60,6 @@ public class GunManager : MonoBehaviour
 
     [Header("Multiplayer")]
     [SerializeField] private PhotonView _pv;
-    [SerializeField] private LayerMask targetLayer;
 
     private bool canShoot = true;
     private bool reloading = false;
@@ -112,7 +111,7 @@ public class GunManager : MonoBehaviour
             }
             else
             {
-                if (canShoot && currentBulletCount > 1)
+                if (canShoot && currentBulletCount > 1 && !reloading)
                 {
                     canShoot = false;
                     if (!PhotonNetwork.InRoom)
@@ -121,10 +120,11 @@ public class GunManager : MonoBehaviour
                     }
                     else
                     {
-                        _pv.RPC(nameof(Shoot), RpcTarget.All);
+                        Shoot();
+                        _pv.RPC(nameof(Shoot), RpcTarget.Others);
                     }
                     
-                } else if (isReloadedInClayWars)
+                } else if (isReloadedInClayWars && !reloading)
                 {
                     canShoot = false;
                     if (!PhotonNetwork.InRoom)
@@ -133,7 +133,8 @@ public class GunManager : MonoBehaviour
                     }
                     else
                     {
-                        _pv.RPC(nameof(Shoot), RpcTarget.All);
+                        Shoot();
+                        _pv.RPC(nameof(Shoot), RpcTarget.Others);
                     }
                     isReloadedInClayWars = false;
                 }
@@ -144,6 +145,8 @@ public class GunManager : MonoBehaviour
             }
             
         }
+
+        if (!canShoot) return;
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -166,13 +169,16 @@ public class GunManager : MonoBehaviour
                             if (!PhotonNetwork.InRoom)
                             {
                                 ReloadRPC();
+                                isReloadedInClayWars = false;
                             }
                             else
                             {
-                                _pv.RPC(nameof(ReloadRPC), RpcTarget.All);
+                                ReloadRPC();
+                                isReloadedInClayWars = false;
+                                _pv.RPC(nameof(ReloadRPC), RpcTarget.Others);
                             }
 
-                            isReloadedInClayWars = false;
+                            
                         }
                     }
                     else
@@ -182,13 +188,14 @@ public class GunManager : MonoBehaviour
                         if (!PhotonNetwork.InRoom)
                         {
                             ReloadRPC();
+                            isReloadedInClayWars = false;
                         }
                         else
                         {
-                            _pv.RPC(nameof(ReloadRPC), RpcTarget.All);
+                            ReloadRPC();
+                            _pv.RPC(nameof(ReloadRPC), RpcTarget.Others);
+                            isReloadedInClayWars = false;
                         }
-
-                        isReloadedInClayWars = false;
                     }
                 }
                 else
@@ -205,6 +212,14 @@ public class GunManager : MonoBehaviour
     [PunRPC]
     private void Shoot()
     {
+        if (!isInfinite)
+        {
+            currentBulletCount--;
+            DestroyAnAmmo();
+        }
+
+        StartCoroutine(Cooldown());
+
         if (!isShotgun)
         {
             ShootABullet(Input.mousePosition);
@@ -238,15 +253,6 @@ public class GunManager : MonoBehaviour
         {
             GameObject.Find("ClayWarsScoreCounter").GetComponent<ClayWarsScoreCounter>().ShotFired();
         }
-        
-
-        if (!isInfinite)
-        {
-            currentBulletCount--;
-            DestroyAnAmmo();
-        }
-
-        StartCoroutine(Cooldown());
     }
 
 
@@ -265,7 +271,7 @@ public class GunManager : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(raycastDirection);
 
-        if (Physics.Raycast(ray, out hit, 1000f, targetLayer)) //&& Vector3.Distance(transform.position, hit.point) < 200f
+        if (Physics.Raycast(ray, out hit, 1000f)) //&& Vector3.Distance(transform.position, hit.point) < 200f
         {
             if (hitEffect != null)
             {
@@ -467,6 +473,9 @@ public class GunManager : MonoBehaviour
         }
 
         targets = new List<ITarget>(); //reset list
+
+        reloading = false;
+        isReloadedInClayWars = true;
     }
 
     private void DestroyAmmoDisplay()
