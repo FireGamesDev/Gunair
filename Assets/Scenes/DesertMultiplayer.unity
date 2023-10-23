@@ -43930,6 +43930,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1695516762707368262, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
+      propertyPath: _pv
+      value: 
+      objectReference: {fileID: 1152457406}
+    - target: {fileID: 1695516762707368262, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
       propertyPath: cursor
       value: 
       objectReference: {fileID: 1243475669}
@@ -44082,7 +44086,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1695516762707368263, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
       insertIndex: -1
       addedObject: {fileID: 911097877}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2075173371193377789, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1152457406}
+    - targetCorrespondingSourceObject: {fileID: 2075173371193377789, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1152457407}
   m_SourcePrefab: {fileID: 100100000, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
 --- !u!1 &1152457402 stripped
 GameObject:
@@ -44105,6 +44115,80 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1695516762707368263, guid: 7e08ed1829e486149abb9599a819af60, type: 3}
   m_PrefabInstance: {fileID: 1152457401}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1152457406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152457402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 1152457407}
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1152457407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152457402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8069ffa6ab7df7340ad5ce0c3da47526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interpolationBackTime: 0.12
+  extrapolationMode: 1
+  useExtrapolationTimeLimit: 1
+  extrapolationTimeLimit: 5
+  useExtrapolationDistanceLimit: 0
+  extrapolationDistanceLimit: 20
+  sendPositionThreshold: 0
+  sendRotationThreshold: 0
+  sendScaleThreshold: 0
+  sendVelocityThreshold: 0
+  sendAngularVelocityThreshold: 0
+  receivedPositionThreshold: 0
+  receivedRotationThreshold: 0
+  snapPositionThreshold: 0
+  snapRotationThreshold: 0
+  snapScaleThreshold: 0
+  positionLerpSpeed: 0.85
+  rotationLerpSpeed: 0.85
+  scaleLerpSpeed: 0.85
+  timeCorrectionSpeed: 0.1
+  snapTimeThreshold: 0.3
+  syncPosition: 7
+  syncRotation: 0
+  syncScale: 7
+  syncVelocity: 7
+  syncAngularVelocity: 7
+  isPositionCompressed: 0
+  isRotationCompressed: 0
+  isScaleCompressed: 0
+  isVelocityCompressed: 0
+  isAngularVelocityCompressed: 0
+  automaticallyResetTime: 0
+  isSmoothingAuthorityChanges: 1
+  whenToUpdateTransform: 0
+  setVelocityInsteadOfPositionOnNonOwners: 0
+  useLocalTransformOnly: 0
+  maxPositionDifferenceForVelocitySyncing: 10
+  ownerChangeIndicator: 1
+  receivedStatesCounter: 0
 --- !u!1001 &1156828035
 PrefabInstance:
   m_ObjectHideFlags: 0
