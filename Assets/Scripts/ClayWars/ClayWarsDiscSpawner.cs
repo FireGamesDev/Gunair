@@ -64,7 +64,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
                 ClayWarsRoundManager.Instance.NextRound();
 
-                int playerCount = 0;
+                int playerCount;
 
                 if (PhotonNetwork.InRoom)
                 {
@@ -104,11 +104,13 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 }
             }
 
-           
 
-            if (Random.value < 0.5f)
+            if (!PhotonNetwork.InRoom)
             {
-                yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
+                if (Random.value < 0.5f)
+                {
+                    yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
+                }
             }
 
             bool toLeft = Random.value < 0.5f;

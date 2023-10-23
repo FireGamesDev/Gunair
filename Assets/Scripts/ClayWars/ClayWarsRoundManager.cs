@@ -33,14 +33,24 @@ public class ClayWarsRoundManager : MonoBehaviour
 
         InitRoundCircles();
 
-        if (ClayWarsGameManager.playerCount < 2)
+        if (PhotonNetwork.InRoom)
         {
-            currentPlayerIndexInRound = 0;
+            if (PhotonNetwork.PlayerList.Length > 1)
+            {
+                currentRoundNumber = 0;
+            }
         }
-        
-        if (ClayWarsGameManager.playerCount > 1)
+        else
         {
-            currentRoundNumber = 0;
+            if (ClayWarsGameManager.playerCount < 2)
+            {
+                currentPlayerIndexInRound = 0;
+            }
+
+            if (ClayWarsGameManager.playerCount > 1)
+            {
+                currentRoundNumber = 0;
+            }
         }
 
         StartCoroutine(FirstRound());
@@ -71,7 +81,7 @@ public class ClayWarsRoundManager : MonoBehaviour
 
             shotgun.ReloadShotgunOnNewRoundInstantly();
 
-            if (PhotonNetwork.InRoom)
+            if (!PhotonNetwork.InRoom)
             {
                 if (currentPlayerIndexInRound >= ClayWarsGameManager.playerCount)
                 {
@@ -146,11 +156,21 @@ public class ClayWarsRoundManager : MonoBehaviour
             {
                 roundDisplay.text = "LAST ROUND";
                 roundDisplay.color = Color.red;
+
+                if (PhotonNetwork.InRoom)
+                {
+                    shotgun.GetComponent<PhotonView>().TransferOwnership(currentPlayerIndexInRound);
+                }
             }
             else roundDisplay.text = "ROUND " + (currentRoundNumber + 1).ToString();
             roundDisplay.DOFade(1, 1).OnComplete(() =>
             {
                 roundDisplay.DOFade(0, 1).SetDelay(1);
+
+                if (PhotonNetwork.InRoom)
+                {
+                    shotgun.GetComponent<PhotonView>().TransferOwnership(currentPlayerIndexInRound);
+                }
             });
         });
 

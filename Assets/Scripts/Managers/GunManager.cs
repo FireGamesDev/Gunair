@@ -81,7 +81,6 @@ public class GunManager : MonoBehaviour
     {
         if (PhotonNetwork.InRoom)
         {
-            Debug.LogWarning("Local index: " + MultiplayerGameManager.GetLocalPlayerIndex().ToString() + " Global index: " + ClayWarsRoundManager.Instance.currentPlayerIndexInRound);
             if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
             {
                 return;
@@ -415,13 +414,11 @@ public class GunManager : MonoBehaviour
     [PunRPC]
     private void ReloadRPC()
     {
-        print("reloading");
         StartCoroutine(Reload());
     }
 
     private IEnumerator Reload()
     {
-        print("reloaded");
         if (!isShotgun)
         {
             Instantiate(sfxPrefab, transform.position, Quaternion.identity).GetComponent<SFXPlayer>().PlaySFXWithVolume(reloadSFX, 0.3f);

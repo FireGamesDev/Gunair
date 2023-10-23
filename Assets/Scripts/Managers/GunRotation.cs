@@ -12,12 +12,15 @@ public class GunRotation : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
+
+        prevHitPos = Vector3.zero;
     }
 
     private void Update()
     {
         if (PhotonNetwork.InRoom)
         {
+            Debug.LogWarning(MultiplayerGameManager.GetLocalPlayerIndex() + " g: " + ClayWarsRoundManager.Instance.currentPlayerIndexInRound);
             if (MultiplayerGameManager.GetLocalPlayerIndex() != ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
             {
                 return;

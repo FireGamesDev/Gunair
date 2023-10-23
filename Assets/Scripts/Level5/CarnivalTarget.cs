@@ -60,6 +60,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
     {
         if (!isObstacle)
         {
+            print("hit");
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
 
             GameObject hitGo = Instantiate(hitPrefab, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
@@ -98,12 +99,17 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
             Destroy(popup, 1);
 
+            print(PhotonNetwork.InRoom + " in room");
+
             if (PhotonNetwork.InRoom)
             {
                 if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
                 {
-                    GetComponent<PhotonView>().RPC(nameof(DestroyDiscRPC), RpcTarget.All);
+                    //GetComponent<PhotonView>().RPC(nameof(DestroyDiscRPC), RpcTarget.All);
+                    PhotonNetwork.Destroy(gameObject);
                 }
+                PhotonNetwork.Destroy(gameObject);
+                Destroy(gameObject);
             }
             else
             {
