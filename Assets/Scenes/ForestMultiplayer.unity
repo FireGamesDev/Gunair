@@ -6733,6 +6733,7 @@ GameObject:
   m_Component:
   - component: {fileID: 550438330}
   - component: {fileID: 550438329}
+  - component: {fileID: 550438331}
   m_Layer: 0
   m_Name: RareSpawner
   m_TagString: Untagged
@@ -6756,6 +6757,7 @@ MonoBehaviour:
   chance: 0.2
   isFish: 1
   target: {fileID: 1969229979}
+  _pv: {fileID: 550438331}
 --- !u!4 &550438330
 Transform:
   m_ObjectHideFlags: 0
@@ -6772,6 +6774,28 @@ Transform:
   - {fileID: 1969229980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.038, y: -72.05, z: -1.662}
+--- !u!114 &550438331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550438328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 5
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &551519772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4908611283715356, guid: 6475aabacc1a9cb41aaca282d6ea7fc2, type: 3}
@@ -18050,6 +18074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1608597717}
   - component: {fileID: 1608597716}
+  - component: {fileID: 1608597718}
   m_Layer: 0
   m_Name: DiscSpawner
   m_TagString: Untagged
@@ -18091,6 +18116,7 @@ MonoBehaviour:
   curveAmount: 3.7
   discNumberForTheRoundMin: 2
   discNumberForTheRoundMax: 2
+  _pv: {fileID: 1608597718}
   currentDiscCount: 0
 --- !u!4 &1608597717
 Transform:
@@ -18109,6 +18135,28 @@ Transform:
   - {fileID: 1569244927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1608597718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608597715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 4
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &1620583297
 PrefabInstance:
   m_ObjectHideFlags: 0

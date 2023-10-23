@@ -81,7 +81,7 @@ public class ClayWarsRoundManager : MonoBehaviour
             }
             else
             {
-                if (currentPlayerIndexInRound >= PhotonNetwork.CountOfPlayers)
+                if (currentPlayerIndexInRound >= PhotonNetwork.PlayerList.Length)
                 {
                     currentPlayerIndexInRound = 0;
                     currentRoundNumber += 1;

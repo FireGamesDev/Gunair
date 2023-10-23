@@ -2,6 +2,7 @@ using Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CarnivalTarget : MonoBehaviour, ITarget
 {
@@ -75,7 +76,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
                 score += quickshotScore;
 
                 QuickShot.Instance.StopTimer();
-                if (Photon.Pun.PhotonNetwork.InRoom)
+                if (PhotonNetwork.InRoom)
                 {
                     MultiplayerGameManager.Instance.UpdateScore(score);
                 }
@@ -97,7 +98,18 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
             Destroy(popup, 1);
 
-            Destroy(gameObject);
+            if (PhotonNetwork.InRoom)
+            {
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                {
+                    GetComponent<PhotonView>().RPC(nameof(DestroyDiscRPC), RpcTarget.All);
+                }
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            
         }
         else
         {
@@ -114,6 +126,12 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             if (scoreManager != null) scoreManager.RemoveScore(score);
         }
+    }
+
+    [PunRPC]
+    public void DestroyDiscRPC()
+    {
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

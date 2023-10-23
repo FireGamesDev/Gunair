@@ -5,7 +5,7 @@ using Scripts.Managers;
 
 public class BeeNestTarget : MonoBehaviour, ITarget
 {
-    [SerializeField] private float speed = 5f;
+    //[SerializeField] private float speed = 5f;
     [SerializeField] private float approachSpeed = 2f; // Adjust the speed of approaching the target
     [SerializeField] private float circleRadius = 1.5f; // Adjust the radius of the circular motion
     [SerializeField] private float circleSpeed = 2f; // Adjust the speed of the circular motion

@@ -64,7 +64,18 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
                 ClayWarsRoundManager.Instance.NextRound();
 
-                if (ClayWarsGameManager.playerCount > 1)
+                int playerCount = 0;
+
+                if (PhotonNetwork.InRoom)
+                {
+                    playerCount = PhotonNetwork.PlayerList.Length;
+                }
+                else
+                {
+                    playerCount = ClayWarsGameManager.playerCount;
+                }
+
+                if (playerCount > 1)
                 {
                     yield return new WaitForSeconds(5f);
 
@@ -78,10 +89,22 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 NewRound();
             }
 
-            while (ClayWarsGameManager.Instance.isEnded) //stop it
+            if (PhotonNetwork.InRoom)
             {
-                yield return new WaitForSeconds(1f);
+                while (MultiplayerGameManager.Instance.isEnded) //stop it
+                {
+                    yield return new WaitForSeconds(1f);
+                }
             }
+            else
+            {
+                while (ClayWarsGameManager.Instance.isEnded) //stop it
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+
+           
 
             if (Random.value < 0.5f)
             {
@@ -128,11 +151,14 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             if (PhotonNetwork.InRoom)
             {
-                _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft);
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                {
+                    _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft, discNumberForTheRound);
+                } 
             }
             else
             {
-                SpawnDiscRPC(spawnpos.position, toLeft);
+                SpawnDiscRPC(spawnpos.position, toLeft, discNumberForTheRound);
             }
         }
         else
@@ -141,16 +167,20 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             if (PhotonNetwork.InRoom)
             {
-                _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft);
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                {
+                    _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, spawnpos.position, toLeft, discNumberForTheRound);
+                }
             }
             else
             {
-                SpawnDiscRPC(spawnpos.position, toLeft);
+                SpawnDiscRPC(spawnpos.position, toLeft, discNumberForTheRound);
             }
         }
     }
 
-    private void SpawnDiscRPC(Vector3 spawnpos, bool toLeft)
+    [PunRPC]
+    private void SpawnDiscRPC(Vector3 spawnpos, bool toLeft, int discNumberForTheRound)
     {
         GameObject discGo;
         if (!isBouncy)
@@ -167,6 +197,8 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         StartCoroutine(DelayAndThenTransitionCamera(discGo));
 
         Destroy(discGo, lifeTime);
+
+        this.discNumberForTheRound = discNumberForTheRound;
     }
 
     private IEnumerator DelayAndThenTransitionCamera(GameObject discGo)

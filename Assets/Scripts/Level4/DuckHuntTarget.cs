@@ -145,7 +145,7 @@ public class DuckHuntTarget : MonoBehaviour, ITarget
         }  
         else
         {
-            if (Photon.Pun.PhotonNetwork.InRoom)
+            if (PhotonNetwork.InRoom)
             {
                 MultiplayerGameManager.Instance.UpdateScore(score);
             }

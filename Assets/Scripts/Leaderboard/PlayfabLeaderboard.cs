@@ -70,7 +70,7 @@ public class PlayfabLeaderboard : MonoBehaviour
             if (item.StatValue == 0) continue;
 
             GameObject row = Instantiate(rowPrefab, rowsParent);
-            Sprite rankSprite = null;
+            //Sprite rankSprite = null;
             if (i < 3)
             {
                 //rankSprite = rankingSprites[i];
@@ -100,7 +100,7 @@ public class PlayfabLeaderboard : MonoBehaviour
         {
             if (item.StatValue == 0) continue;
             GameObject row = Instantiate(rowPrefab, rowsParent);
-            Sprite rankSprite = null;
+            //Sprite rankSprite = null;
             if (rank <= 3)
             {
                 //rankSprite = rankingSprites[rank - 1];
