@@ -62,6 +62,7 @@ public class CarnivalTarget : MonoBehaviour, ITarget
         {
             if (PhotonNetwork.InRoom)
             {
+                PhotonNetwork.Instantiate(explosionEffect.name, transform.position, Quaternion.identity);
                 if (GetComponent<PhotonView>().IsMine)
                 {
                     PhotonNetwork.Destroy(gameObject);
@@ -107,7 +108,6 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             Destroy(popup, 1);
 
             Destroy(gameObject);
-
         }
         else
         {
@@ -128,9 +128,20 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
     private void OnDestroy()
     {
-        if (isClay)
+        if (!PhotonNetwork.InRoom)
         {
-            ClayWarsDiscSpawner.Instance.currentDiscCount--;
+            if (isClay)
+            {
+                ClayWarsDiscSpawner.Instance.currentDiscCount--;
+            }
+        }
+        else
+        {
+            if (isClay)
+            {
+                ClayWarsDiscSpawner.Instance.currentDiscCount--;
+                ClayWarsDiscSpawner.Instance.SynchCurrentDiscCount(ClayWarsDiscSpawner.Instance.currentDiscCount);
+            }
         }
     }
 }

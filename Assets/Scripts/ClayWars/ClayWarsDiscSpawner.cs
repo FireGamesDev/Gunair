@@ -51,19 +51,32 @@ public class ClayWarsDiscSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
-
-            while (currentDiscCount > 0)
+            if (PhotonNetwork.InRoom)
             {
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(2f);
             }
+            else
+            {
+                yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
+            }
+
+
+            if (!PhotonNetwork.InRoom)
+            {
+                while (currentDiscCount > 0)
+                {
+                    yield return new WaitForSeconds(1);
+                }
+            }
+
 
             if (discNumberForTheRound <= 0)
             {
-                ClayWarsRoundManager.Instance.NextPlayer();
-
                 if (PhotonNetwork.InRoom)
                 {
+                    //give the player time to shoot down the targets (synch doesn't work)
+                    yield return new WaitForSeconds(4.5f);
+
                     if (PhotonNetwork.IsMasterClient)
                     {
                         _pv.RPC(nameof(NextRoundRPC), RpcTarget.All, ClayWarsRoundManager.Instance.currentRoundNumber);
@@ -125,13 +138,21 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             bool toLeft = Random.value < 0.5f;
 
-            fromLeftIconUI.SetActive(toLeft);
-
-            fromRightIconUI.SetActive(!toLeft);
+            if (!PhotonNetwork.InRoom)
+            {
+                DiscIndicator(toLeft);
+            }
+            else
+            {
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                {
+                    _pv.RPC(nameof(DiscIndicator), RpcTarget.All, toLeft);
+                }
+            }
 
             yield return new WaitForSeconds(3.5f);
 
-            if (Random.value < 0.5f)
+            if (Random.value < 0.65f)
             {
                 SpawnDiscAndLaunch(toLeft);
             }
@@ -139,14 +160,28 @@ public class ClayWarsDiscSpawner : MonoBehaviour
             {
                 //spawnd double with delay
                 SpawnDiscAndLaunch(toLeft);
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(1.5f);
                 SpawnDiscAndLaunch(toLeft);
             }
 
             yield return new WaitForSeconds(0.3f);
 
             QuickShot.Instance.StartTimer();
+
+            //delay between 2 discs
+            if (PhotonNetwork.InRoom)
+            {
+                yield return new WaitForSeconds(2f);
+            }
         }
+    }
+
+    [PunRPC]
+    private void DiscIndicator(bool toLeft)
+    {
+        fromLeftIconUI.SetActive(toLeft);
+
+        fromRightIconUI.SetActive(!toLeft);
     }
 
     private void SpawnDiscAndLaunch(bool toLeft)
@@ -168,12 +203,12 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                     if (isBouncy)
                     {
                         int discViewID = PhotonNetwork.Instantiate(disc.name, spawnpos.position, Quaternion.Euler(90, 0, 0)).GetComponent<PhotonView>().ViewID;
-                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound);
+                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound, currentDiscCount);
                     }
                     else
                     {
                         int discViewID = PhotonNetwork.Instantiate(disc.name, spawnpos.position, Quaternion.identity).GetComponent<PhotonView>().ViewID;
-                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound);
+                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound, currentDiscCount);
                     }
                 } 
             }
@@ -193,12 +228,12 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                     if (isBouncy)
                     {
                         int discViewID = PhotonNetwork.Instantiate(disc.name, spawnpos.position, Quaternion.Euler(90, 0, 0)).GetComponent<PhotonView>().ViewID;
-                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound);
+                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound, currentDiscCount);
                     }
                     else
                     {
                         int discViewID = PhotonNetwork.Instantiate(disc.name, spawnpos.position, Quaternion.identity).GetComponent<PhotonView>().ViewID;
-                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound);
+                        _pv.RPC(nameof(SpawnDiscRPC), RpcTarget.All, discViewID, spawnpos.position, toLeft, discNumberForTheRound, currentDiscCount);
                     }
                     
                 }
@@ -211,7 +246,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
     }
 
     [PunRPC]
-    private void SpawnDiscRPC(int viewID, Vector3 spawnpos, bool toLeft, int discNumberForTheRound)
+    private void SpawnDiscRPC(int viewID, Vector3 spawnpos, bool toLeft, int discNumberForTheRound, int currentDiscCount)
     {
         PhotonView pv = PhotonView.Find(viewID);
         GameObject discGo = pv.gameObject;
@@ -241,6 +276,7 @@ public class ClayWarsDiscSpawner : MonoBehaviour
         
 
         this.discNumberForTheRound = discNumberForTheRound;
+        this.currentDiscCount = currentDiscCount;
     }
 
     private IEnumerator DestroyDisc(GameObject discGo)
@@ -315,11 +351,24 @@ public class ClayWarsDiscSpawner : MonoBehaviour
     [PunRPC]
     private void NextRoundRPC(int roundNumber)
     {
-        ClayWarsRoundManager.Instance.NextRound(roundNumber);
+        ClayWarsRoundManager.Instance.NextPlayer();
+
+        ClayWarsRoundManager.Instance.NextRound();
     }
 
     public void NewRound()
     {
         discNumberForTheRound = Random.Range(discNumberForTheRoundMin, discNumberForTheRoundMax);
+    }
+
+    public void SynchCurrentDiscCount(int currentDiscCount)
+    {
+        _pv.RPC(nameof(SetDiscCountRPC), RpcTarget.All, currentDiscCount);
+    }
+
+    [PunRPC]
+    private void SetDiscCountRPC(int currentDiscCount)
+    {
+        this.currentDiscCount = currentDiscCount;
     }
 }

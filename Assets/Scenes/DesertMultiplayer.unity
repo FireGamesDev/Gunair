@@ -44131,7 +44131,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1152457407}
@@ -44789,9 +44789,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1024459736}
-        m_TargetAssemblyTypeName: ClayWarsGameManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 1024459739}
+        m_TargetAssemblyTypeName: MultiplayerGameManager, Assembly-CSharp
+        m_MethodName: Lobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
