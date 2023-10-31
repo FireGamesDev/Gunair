@@ -60,15 +60,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
                 yield return new WaitForSeconds(Random.Range(1.2f, spawnTime));
             }
 
-
-            if (!PhotonNetwork.InRoom)
+            while (currentDiscCount > 0)
             {
-                while (currentDiscCount > 0)
-                {
-                    yield return new WaitForSeconds(1);
-                }
+                yield return new WaitForSeconds(1);
             }
-
 
             if (discNumberForTheRound <= 0)
             {
@@ -168,10 +163,10 @@ public class ClayWarsDiscSpawner : MonoBehaviour
 
             QuickShot.Instance.StartTimer();
 
-            //delay between 2 discs
+            //delay between the next round of the spawn
             if (PhotonNetwork.InRoom)
             {
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(1f);
             }
         }
     }

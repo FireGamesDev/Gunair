@@ -76,36 +76,44 @@ public class CarnivalTarget : MonoBehaviour, ITarget
                 score += quickshotScore;
 
                 QuickShot.Instance.StopTimer();
+
                 if (PhotonNetwork.InRoom)
                 {
-                    MultiplayerGameManager.Instance.UpdateScore(score);
+                    if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                    {
+                        MultiplayerGameManager.Instance.UpdateScore(score);
+                        GetComponent<PhotonView>().RPC(nameof(SynchScore), RpcTarget.All, score, contactPoint.point);
+                    }
                 }
                 else
                 {
                     ClayWarsGameManager.Instance.UpdateScore(score);
+                    ClayWarsScoreCounter.Instance.TextFeedback(score, contactPoint.point);
                 }
-
-                ClayWarsScoreCounter.Instance.TextFeedback(quickshotScore, contactPoint.point);
             }
 
             //score popup
             if (!PhotonNetwork.InRoom)
             {
-                SynchScorePopup(contactPoint.point);
+                SynchScorePopup(score, contactPoint.point);
             }
             else
             {
-                if (GetComponent<PhotonView>().IsMine)
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
                 {
-                    GetComponent<PhotonView>().RPC(nameof(SynchScorePopup), RpcTarget.All, contactPoint.point);
+                    GetComponent<PhotonView>().RPC(nameof(SynchScorePopup), RpcTarget.All, score, contactPoint.point);
                 }  
             }
-            
 
-            if (GetComponent<PhotonView>().IsMine)
+
+            if (PhotonNetwork.InRoom)
             {
-                PhotonNetwork.Destroy(gameObject);
+                if (GetComponent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(gameObject);
+                }
             }
+            
             Destroy(gameObject);
         }
         else
@@ -126,7 +134,13 @@ public class CarnivalTarget : MonoBehaviour, ITarget
     }
 
     [PunRPC]
-    private void SynchScorePopup(Vector3 pos)
+    private void SynchScore(int score, Vector3 pos)
+    {
+        ClayWarsScoreCounter.Instance.TextFeedback(score, pos);
+    }
+
+    [PunRPC]
+    private void SynchScorePopup(int score, Vector3 pos)
     {
         var popup = Instantiate(scorePopup, pos, Quaternion.identity);
         popup.transform.LookAt(Camera.main.transform);
