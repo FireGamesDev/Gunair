@@ -154,28 +154,27 @@ public class ClayWarsScoreCounter : MonoBehaviour
         {
             if (PhotonNetwork.InRoom)
             {
-                _pv.RPC(nameof(SpawnPopup), RpcTarget.All, pos, textFeedback, feedbackColor);
+                if (MultiplayerGameManager.GetLocalPlayerIndex() == ClayWarsRoundManager.Instance.currentPlayerIndexInRound)
+                {
+                    _pv.RPC(nameof(SpawnPopup), RpcTarget.All, pos, textFeedback, feedbackColor.r, feedbackColor.g, feedbackColor.b);
+                } 
             }
             else
             {
-                SpawnPopup(pos, textFeedback, feedbackColor);
+                SpawnPopup(pos, textFeedback, feedbackColor.r, feedbackColor.g, feedbackColor.b);
             }
         }
     }
 
     [PunRPC]
-    private void SpawnPopup(Vector3 pos, string textFeedback, Color feedbackColor)
+    private void SpawnPopup(Vector3 pos, string textFeedback, float r, float g, float b)
     {
+        Color feedbackColor = new Color(r, g, b);
+
         GameObject popup;
-        if (PhotonNetwork.InRoom)
-        {
-            popup = PhotonNetwork.Instantiate(textPopup.name, pos, Quaternion.identity);
-        }
-        else
-        {
-            popup = Instantiate(textPopup, pos, Quaternion.identity);
-        }
-        
+
+        popup = Instantiate(textPopup, pos, Quaternion.identity);
+
         popup.transform.LookAt(Camera.main.transform);
 
         Vector3 scale = popup.transform.localScale;

@@ -60,15 +60,6 @@ public class CarnivalTarget : MonoBehaviour, ITarget
     {
         if (!isObstacle)
         {
-            if (PhotonNetwork.InRoom)
-            {
-                PhotonNetwork.Instantiate(explosionEffect.name, transform.position, Quaternion.identity);
-                if (GetComponent<PhotonView>().IsMine)
-                {
-                    PhotonNetwork.Destroy(gameObject);
-                }
-            }
-
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
 
             GameObject hitGo = Instantiate(hitPrefab, contactPoint.point, Quaternion.LookRotation(contactPoint.normal));
@@ -98,15 +89,23 @@ public class CarnivalTarget : MonoBehaviour, ITarget
             }
 
             //score popup
-            var popup = Instantiate(scorePopup, contactPoint.point, Quaternion.identity);
-            popup.transform.LookAt(Camera.main.transform);
-            Vector3 scale = popup.transform.localScale;
-            scale.x *= -1;
-            popup.transform.localScale = scale;
-            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = score.ToString();
-            popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
-            Destroy(popup, 1);
+            if (!PhotonNetwork.InRoom)
+            {
+                SynchScorePopup(contactPoint.point);
+            }
+            else
+            {
+                if (GetComponent<PhotonView>().IsMine)
+                {
+                    GetComponent<PhotonView>().RPC(nameof(SynchScorePopup), RpcTarget.All, contactPoint.point);
+                }  
+            }
+            
 
+            if (GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
             Destroy(gameObject);
         }
         else
@@ -124,6 +123,19 @@ public class CarnivalTarget : MonoBehaviour, ITarget
 
             if (scoreManager != null) scoreManager.RemoveScore(score);
         }
+    }
+
+    [PunRPC]
+    private void SynchScorePopup(Vector3 pos)
+    {
+        var popup = Instantiate(scorePopup, pos, Quaternion.identity);
+        popup.transform.LookAt(Camera.main.transform);
+        Vector3 scale = popup.transform.localScale;
+        scale.x *= -1;
+        popup.transform.localScale = scale;
+        popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().text = score.ToString();
+        popup.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().color = Color.white;
+        Destroy(popup, 1);
     }
 
     private void OnDestroy()
