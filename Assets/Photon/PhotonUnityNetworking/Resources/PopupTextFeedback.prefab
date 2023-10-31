@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5718932709261655644}
   - component: {fileID: 5718932709261655645}
-  - component: {fileID: -5616731270253430317}
+  - component: {fileID: -5008355039914748131}
   m_Layer: 0
   m_Name: PopupTextFeedback
   m_TagString: Untagged
@@ -217,7 +217,7 @@ Canvas:
   m_SortingLayerID: 1999659313
   m_SortingOrder: 10
   m_TargetDisplay: 0
---- !u!114 &-5616731270253430317
+--- !u!114 &-5008355039914748131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

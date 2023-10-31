@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,12 @@ public class ClayWarsGameManager : MonoBehaviour
     [SerializeField] private GameObject endScreen;
     [SerializeField] private TMPro.TMP_Text winnerScoreText;
     [SerializeField] private TMPro.TMP_Text endGameText;
+
+    [Header("Winner")]
+    [SerializeField] private TMPro.TMP_InputField winnerNameInput;
+    [SerializeField] private TMPro.TMP_Text submittedText;
+
+    private string winnerName;
 
     public static int playerCount = 1;
     public static ClayWarsGameManager Instance;
@@ -52,6 +59,9 @@ public class ClayWarsGameManager : MonoBehaviour
 
             ClayWarsScoreCounter.Instance.parent.gameObject.SetActive(false);
 
+            winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
+            winnerNameInput.text = winnerName;
+
             StartCoroutine(ScoreDisplayRoutine());
         }
     }
@@ -73,18 +83,25 @@ public class ClayWarsGameManager : MonoBehaviour
     private void DisplayWinner()
     {
         int winnerScore = ClayWarsScoreCounter.Instance.GetHighestScore();
-        string winnerName = ClayWarsScoreCounter.Instance.GetPlayerWithHighestScore();
         winnerScoreText.text = winnerScore.ToString();
 
         if (playerCount > 1)
         {
             endGameText.text = "The winner is: " + winnerName;
         }
+    }
 
-        if (winnerName.Contains(PlayerPrefs.GetString("Nickname", "")))
+    public void SubmitWinner()
+    {
+        PlayfabLeaderboard.SubmitScore(winnerNameInput.text, ClayWarsScoreCounter.Instance.GetHighestScore(), false);
+
+        submittedText.gameObject.SetActive(true);
+        submittedText.alpha = 1f;
+
+        submittedText.DOFade(0, 1f).OnComplete(() =>
         {
-            PlayfabLeaderboard.SubmitScore(winnerScore);
-        }
+            submittedText.gameObject.SetActive(false);
+        });
     }
 
     public void Restart()

@@ -124,9 +124,9 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             endGameText.text = "The winner is: " + winnerName;
         }
 
-        if (winnerName.Contains(PlayerPrefs.GetString("Nickname", "")))
+        if (PhotonNetwork.LocalPlayer.NickName == winnerName)
         {
-            PlayfabLeaderboard.SubmitScore(winnerScore);
+            PlayfabLeaderboard.SubmitScore(winnerName, winnerScore, true);
         }
     }
 

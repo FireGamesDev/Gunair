@@ -229,7 +229,7 @@ public class GunManager : MonoBehaviour
             for (int i = 0; i < pelletCount - 1; i++)
             {
                 Vector3 spreadPosition = GenerateSpreadPosition(Input.mousePosition, spreadRadius);
-                ShootABullet(spreadPosition);               
+                ShootABullet(spreadPosition);
             }
             ShootABullet(Input.mousePosition);
         }

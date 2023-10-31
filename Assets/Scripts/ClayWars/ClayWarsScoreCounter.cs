@@ -45,27 +45,35 @@ public class ClayWarsScoreCounter : MonoBehaviour
 
         if (PhotonNetwork.InRoom)
         {
-            playerCount = PhotonNetwork.PlayerList.Length;
+            int i = 1;
+
+            foreach (var player in PhotonNetwork.PlayerList)
+            {
+                ScoreRow row = Instantiate(prefab, parent).GetComponent<ScoreRow>();
+                row.SetRow(player.NickName, 0, i);
+                i++;
+                scoreRows.Add(row);
+            }
         }
         else
         {
             playerCount = ClayWarsGameManager.playerCount;
-        }
 
-        for (int i = 1; i <= playerCount; i++)
-        {
-            ScoreRow row = Instantiate(prefab, parent).GetComponent<ScoreRow>();
-            if (i == 1)
+            for (int i = 1; i <= playerCount; i++)
             {
-                row.SetRow(PlayerPrefs.GetString("Nickname", ""), 0, i);
+                ScoreRow row = Instantiate(prefab, parent).GetComponent<ScoreRow>();
+                if (i == 1)
+                {
+                    row.SetRow(PlayerPrefs.GetString("Nickname", ""), 0, i);
+                }
+                else
+                {
+                    row.SetRow(PlayerPrefs.GetString("Nickname", "") + i.ToString(), 0, i);
+                }
+
+                scoreRows.Add(row);
             }
-            else
-            {
-                row.SetRow(PlayerPrefs.GetString("Nickname", "") + i.ToString(), 0, i);
-            }
-            
-            scoreRows.Add(row);
-        }
+        } 
     }
 
     public void UpdatePlayerScore(int playerIndex, int scoresToAdd)
@@ -159,7 +167,15 @@ public class ClayWarsScoreCounter : MonoBehaviour
     private void SpawnPopup(Vector3 pos, string textFeedback, Color feedbackColor)
     {
         GameObject popup;
-        popup = Instantiate(textPopup, pos, Quaternion.identity);
+        if (PhotonNetwork.InRoom)
+        {
+            popup = PhotonNetwork.Instantiate(textPopup.name, pos, Quaternion.identity);
+        }
+        else
+        {
+            popup = Instantiate(textPopup, pos, Quaternion.identity);
+        }
+        
         popup.transform.LookAt(Camera.main.transform);
 
         Vector3 scale = popup.transform.localScale;
