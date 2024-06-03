@@ -19979,6 +19979,8 @@ MonoBehaviour:
   endScreen: {fileID: 1372173595}
   winnerScoreText: {fileID: 833458046}
   endGameText: {fileID: 1074073838}
+  winnerNameInput: {fileID: 0}
+  submittedText: {fileID: 0}
 --- !u!4 &578597306
 Transform:
   m_ObjectHideFlags: 0
