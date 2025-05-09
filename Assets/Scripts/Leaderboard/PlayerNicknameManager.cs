@@ -5,6 +5,7 @@ using TMPro;
 using PlayFab.ClientModels;
 using PlayFab;
 using Scripts.Managers;
+using System;
 
 public class PlayerNicknameManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerNicknameManager : MonoBehaviour
 
     private string currentPlayerName;
 
-    private int[] letterIndices;
+    private int[] letterIndices = new int[3];
     private string[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     private void Start()
@@ -29,6 +30,24 @@ public class PlayerNicknameManager : MonoBehaviour
             currentPlayerName = PlayerPrefs.GetString("Nickname", "");
             nameDisplay.text = "Signed in as: " + currentPlayerName;
             Login(currentPlayerName);
+
+            Debug.Log(currentPlayerName);
+
+            for (int i = 0; i < 3; i++)
+            {
+                // Convert the character to uppercase and find its index in the alphabet array
+                char currentChar = char.ToUpper(currentPlayerName[i]);
+                letterIndices[i] = Array.IndexOf(alphabet, currentChar.ToString());
+
+                // Make sure we found the character in the alphabet
+                if (letterIndices[i] == -1)
+                {
+                    // Handle case where character isn't found (maybe default to 'A')
+                    letterIndices[i] = 0;
+                }
+
+                UpdateNicknameDisplay(i, currentPlayerName[i].ToString());
+            }
         }
         else
         {
@@ -44,7 +63,7 @@ public class PlayerNicknameManager : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            letterIndices[i] = Random.Range(0, alphabet.Length);
+            letterIndices[i] = UnityEngine.Random.Range(0, alphabet.Length);
             UpdateNicknameDisplay(i, alphabet[letterIndices[i]]);
         }
     }
