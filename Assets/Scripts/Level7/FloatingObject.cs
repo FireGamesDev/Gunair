@@ -59,7 +59,7 @@ public class FloatingObject : MonoBehaviour, ITarget
     private void Rotation()
     {
         // Get the velocity of the Rigidbody
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
 
         // Calculate the rotation angle based on velocity
         float targetRotationAngle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg / 6;

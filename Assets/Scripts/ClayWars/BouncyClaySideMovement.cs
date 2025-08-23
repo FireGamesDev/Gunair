@@ -33,11 +33,11 @@ public class BouncyClaySideMovement : MonoBehaviour
     {
         if (!isActivated) return;
 
-        Vector3 currentVelocity = rb.velocity;
+        Vector3 currentVelocity = rb.linearVelocity;
 
         Vector3 movement = direction * moveSpeed;
         Vector3 newVelocity = new Vector3(movement.x, currentVelocity.y, currentVelocity.z);
 
-        rb.velocity = newVelocity;
+        rb.linearVelocity = newVelocity;
     }
 }
